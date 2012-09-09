@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Gorticus' brain]]></title>
-  <link href="http://gorticus.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: misc | Gorticus' brain]]></title>
+  <link href="http://gorticus.github.com/blog/categories/misc/atom.xml" rel="self"/>
   <link href="http://gorticus.github.com/"/>
   <updated>2012-09-08T22:32:36-04:00</updated>
   <id>http://gorticus.github.com/</id>
@@ -18,7 +18,7 @@
     <link href="http://gorticus.github.com/blog/2012/09/08/uryyb-jbeyq-slash/"/>
     <updated>2012-09-08T21:43:00-04:00</updated>
     <id>http://gorticus.github.com/blog/2012/09/08/uryyb-jbeyq-slash</id>
-    <content type="html"><![CDATA[<p>Probably not the blog you&#8217;re looking for &#8230; move along.</p>
+    <content type="html"><![CDATA[<p>Probably not the blog you're looking for ... move along.</p>
 
 <p>The stack:</p>
 
