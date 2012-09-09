@@ -3,7 +3,7 @@ layout: post
 title: "OL and UL alignment in Octopress"
 date: 2012-09-09 13:01
 comments: true
-categories: 
+categories: octopress css markdown
 ---
 
 <div>
