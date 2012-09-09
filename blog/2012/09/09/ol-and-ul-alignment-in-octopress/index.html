@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: octopress - Gorticus' brain</title>
+  <title>OL and UL alignment in Octopress - Gorticus' brain</title>
   <meta name="author" content="Jason Mitchell">
 
   
-  <meta name="description" content="Category: octopress">
+  <meta name="description" content="ul.octo_default { padding-left: 0em; } The default Octopress style does not indent OL and UL lists, i.e., flight of bees lodge of beavers rabble of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://gorticus.github.comblog/categories/octopress/">
+  <link rel="canonical" href="http://gorticus.github.com/blog/2012/09/09/ol-and-ul-alignment-in-octopress/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -75,35 +75,123 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Octopress</h1>
+    
+      <h1 class="entry-title">OL and UL Alignment in Octopress</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-09T13:01:00-04:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
-
-  
-  <h2>2012</h2>
-
-<article>
-  
-<h1><a href="/blog/2012/09/09/octopress-via-github-on-mac-os-x-lion-10-dot-7/">Octopress via GitHub on Mac OS X Lion (10.7)</a></h1>
-<time datetime="2012-09-09T00:10:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>09</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/setup/'>setup</a></span>
-</footer>
-
-
-</article>
-
+<div class="entry-content"><div>
+  <style>
+    ul.octo_default {
+      padding-left: 0em;
+    }
+  </style>
 </div>
 
+
+<p>The default <a href="http://www.octopress.com/">Octopress</a> style does not indent OL and UL lists, i.e.,</p>
+
+<ul class="octo_default">
+  <li>flight of bees</li>
+  <li>lodge of beavers</li>
+  <li>rabble of butterflies</li>
+  <li>murder of crows</li>
+</ul>
+
+
+<p>I dislike this very much, and prefer</p>
+
+<ul>
+  <li>flight of bees</li>
+  <li>lodge of beavers</li>
+  <li>rabble of butterflies</li>
+  <li>murder of crows</li>
+</ul>
+
+
+<p>After a quick search, Octopress <a href="https://github.com/imathis/octopress/issues/417#issuecomment-3950721">Issue #417</a> provided the the simple
+solution: add</p>
+
+<figure class='code'><figcaption><span>Custom css in `sass/custom/_styles.scss` </span><a href='https://github.com/imathis/octopress/issues/417#issuecomment-3950721'>Issue #417</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">article</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">ol</span><span class="o">,</span> <span class="n">ul</span> <span class="err">{</span>
+</span><span class='line'>    <span class="k">padding-left</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or any other custom css to <code>sass/custom/_styles.scss</code>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Jason Mitchell</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-09T13:01:00-04:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://gorticus.github.com/blog/2012/09/09/ol-and-ul-alignment-in-octopress/" data-via="" data-counturl="http://gorticus.github.com/blog/2012/09/09/ol-and-ul-alignment-in-octopress/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/09/octopress-via-github-on-mac-os-x-lion-10-dot-7/" title="Previous Post: Octopress via GitHub on Mac OS X Lion (10.7)">&laquo; Octopress via GitHub on Mac OS X Lion (10.7)</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[Gorticus' brain]]></title>
   <link href="http://gorticus.github.com/atom.xml" rel="self"/>
   <link href="http://gorticus.github.com/"/>
-  <updated>2012-09-09T03:34:06-04:00</updated>
+  <updated>2012-09-09T13:23:16-04:00</updated>
   <id>http://gorticus.github.com/</id>
   <author>
     <name><![CDATA[Jason Mitchell]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OL and UL alignment in Octopress]]></title>
+    <link href="http://gorticus.github.com/blog/2012/09/09/ol-and-ul-alignment-in-octopress/"/>
+    <updated>2012-09-09T13:01:00-04:00</updated>
+    <id>http://gorticus.github.com/blog/2012/09/09/ol-and-ul-alignment-in-octopress</id>
+    <content type="html"><![CDATA[<div>
+  <style>
+    ul.octo_default {
+      padding-left: 0em;
+    }
+  </style>
+</div>
+
+
+<p>The default <a href="http://www.octopress.com/">Octopress</a> style does not indent OL and UL lists, i.e.,</p>
+
+<ul class="octo_default">
+  <li>flight of bees</li>
+  <li>lodge of beavers</li>
+  <li>rabble of butterflies</li>
+  <li>murder of crows</li>
+</ul>
+
+
+<p>I dislike this very much, and prefer</p>
+
+<ul>
+  <li>flight of bees</li>
+  <li>lodge of beavers</li>
+  <li>rabble of butterflies</li>
+  <li>murder of crows</li>
+</ul>
+
+
+<p>After a quick search, Octopress <a href="https://github.com/imathis/octopress/issues/417#issuecomment-3950721">Issue #417</a> provided the the simple
+solution: add</p>
+
+<figure class='code'><figcaption><span>Custom css in `sass/custom/_styles.scss` </span><a href='https://github.com/imathis/octopress/issues/417#issuecomment-3950721'>Issue #417</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">article</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">ol</span><span class="o">,</span> <span class="n">ul</span> <span class="err">{</span>
+</span><span class='line'>    <span class="k">padding-left</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or any other custom css to <code>sass/custom/_styles.scss</code>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress via GitHub on Mac OS X Lion (10.7)]]></title>

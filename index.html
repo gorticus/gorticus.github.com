@@ -9,9 +9,7 @@
   <meta name="author" content="Jason Mitchell">
 
   
-  <meta name="description" content="body { font-size: 95%; } Recently, as an educational experience, and a place to share lessons
-learned, I decided to setup this Octopress blog
-hosted &hellip;">
+  <meta name="description" content="ul.octo_default { padding-left: 0em; } The default Octopress style does not indent OL and UL lists, i.e., flight of bees lodge of beavers rabble of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +76,87 @@ hosted &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/09/ol-and-ul-alignment-in-octopress/">OL and UL Alignment in Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-09T13:01:00-04:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div>
+  <style>
+    ul.octo_default {
+      padding-left: 0em;
+    }
+  </style>
+</div>
+
+
+<p>The default <a href="http://www.octopress.com/">Octopress</a> style does not indent OL and UL lists, i.e.,</p>
+
+<ul class="octo_default">
+  <li>flight of bees</li>
+  <li>lodge of beavers</li>
+  <li>rabble of butterflies</li>
+  <li>murder of crows</li>
+</ul>
+
+
+<p>I dislike this very much, and prefer</p>
+
+<ul>
+  <li>flight of bees</li>
+  <li>lodge of beavers</li>
+  <li>rabble of butterflies</li>
+  <li>murder of crows</li>
+</ul>
+
+
+<p>After a quick search, Octopress <a href="https://github.com/imathis/octopress/issues/417#issuecomment-3950721">Issue #417</a> provided the the simple
+solution: add</p>
+
+<figure class='code'><figcaption><span>Custom css in `sass/custom/_styles.scss` </span><a href='https://github.com/imathis/octopress/issues/417#issuecomment-3950721'>Issue #417</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">article</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">ol</span><span class="o">,</span> <span class="n">ul</span> <span class="err">{</span>
+</span><span class='line'>    <span class="k">padding-left</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or any other custom css to <code>sass/custom/_styles.scss</code>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -528,6 +607,10 @@ correctly, it finally worked.  Personally, I hope you have less trouble.</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/09/ol-and-ul-alignment-in-octopress/">OL and UL alignment in Octopress</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/09/09/octopress-via-github-on-mac-os-x-lion-10-dot-7/">Octopress via GitHub on Mac OS X Lion (10.7)</a>
