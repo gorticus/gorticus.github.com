@@ -9,7 +9,9 @@
   <meta name="author" content="Jason Mitchell">
 
   
-  <meta name="description" content="ul.octo_default { padding-left: 0em; } The default Octopress style does not indent OL and UL lists, i.e., flight of bees lodge of beavers rabble of &hellip;">
+  <meta name="description" content="The problem: post-local CSS In a recent post, I wanted to add a zebra table ([1],[2])
+via the CSS3 tr:nth-child selectors, see StackOverflow. But
+the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +78,196 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/09/zebra-tables-in-octopress-markdown/">Zebra Tables in Octopress Markdown</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-09T23:09:00-04:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>The problem: post-local CSS</h2>
+
+<p>In a recent post, I wanted to add a zebra table ([<a href="http://en.wikipedia.org/wiki/Zebra_striping#CSS">1</a>],[<a href="http://www.alistapart.com/articles/zebratables/">2</a>])
+via the CSS3 <code>tr:nth-child</code> selectors, see <a href="http://stackoverflow.com/a/2765557">StackOverflow</a>.  But
+the default Octopress <a href="https://github.com/rtomayko/rdiscount">markdown</a> drove me crazy by wrapping
+everything in <code>&lt;p&gt;&lt;/p&gt;</code> which killed my <code>&lt;style&gt;</code> attempts.  After a
+quick glance at the <a href="http://daringfireball.net/projects/markdown/syntax#precode">markdown syntax doc</a> suggested I could use
+<code>&lt;div&gt;</code> to get around this.</p>
+
+<h2>An example</h2>
+
+<p>It is useful to define the style locally since a global definition
+may not fit all circumstances.  In the style below, we define a the
+table class <code>ztab1</code> along with a few other style elements to dress up
+the table.</p>
+
+<figure class='code'><figcaption><span>zebra table in default markdown</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;</span><span class="nt">div</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nt">style</span><span class="o">&gt;</span>
+</span><span class='line'>     <span class="nt">table</span><span class="nc">.ztab1</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">margin</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">font-size</span><span class="o">:</span> <span class="m">70</span><span class="o">%</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">steelblue</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">border-bottom</span><span class="o">:</span> <span class="m">2px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span><span class="o">,</span><span class="nt">td</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">padding</span><span class="o">:</span> <span class="m">4px</span> <span class="m">5px</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">odd</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">lightsteelblue</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">cornflowerblue</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<div>
+  <style>
+     table.ztab1 {
+        margin: auto;
+        font-size: 70%;
+        border: 1px solid black;
+      }
+
+      table.ztab1 th {
+        font-weight: bold;
+        background-color: steelblue;
+        text-align: center;
+        border-bottom: 2px solid black;
+      }
+
+      table.ztab1 th,td {
+        padding: 4px 5px;
+      }
+
+      table.ztab1 tr:nth-of-type(odd) {
+        background-color: lightsteelblue;
+      }
+
+      table.ztab1 tr:nth-of-type(even) {
+        background-color: cornflowerblue;
+      }
+  </style>
+</div>
+
+
+<h2>The result</h2>
+
+<p>Using the <code>ztab1</code> table class defined above allows us to input raw HTML
+table to produce</p>
+
+<table class="ztab1">
+  <tr>
+    <th>Counter</th>
+    <th>Animal</th>
+    <th>Collective Name</th>
+  </tr>
+  <tr>
+    <td style="text-align: center;">1</td>
+    <td>apes</td>
+    <td>shrewdness</td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">2</td>
+    <td>bees</td>
+    <td>grist</td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">3</td>
+    <td>mules</td>
+    <td>rake</td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">4</td>
+    <td>owls</td>
+    <td>parliament</td>
+  </tr>
+</table>
+
+
+<p>&nbsp;</p>
+
+<p>The first column entries are centered by</p>
+
+<figure class='code'><figcaption><span>Center first column entry</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;</span><span class="nt">td</span> <span class="nt">style</span><span class="o">=</span><span class="s2">&quot;text-align: center;&quot;</span><span class="o">&gt;</span><span class="nt">1</span><span class="o">&lt;/</span><span class="nt">td</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Conclusion</h1>
+
+<p>Using a <code>&lt;div&gt;</code> tag wrapper prevents the default Octopress markdown from
+eating <code>&lt;style&gt;</code> definitions.  However a better solution would be to
+change the markdown parser, as suggested by <a href="http://oblita.com/blog/2012/07/06/octopress-with-mathjax-by-kramdown/">Chico</a> and <a href="http://www.whatwherewhy.me/blog/2012/01/15/changing-the-markdown-processor-in-octopress/">Aral Balkan</a>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -607,6 +799,10 @@ correctly, it finally worked.  Personally, I hope you have less trouble.</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/09/zebra-tables-in-octopress-markdown/">Zebra tables in Octopress markdown</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/09/09/ol-and-ul-alignment-in-octopress/">OL and UL alignment in Octopress</a>

@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Zebra tables in Octopress markdown - Gorticus' brain</title>
+  <meta name="author" content="Jason Mitchell">
+
+  
+  <meta name="description" content="The problem: post-local CSS In a recent post, I wanted to add a zebra table ([1],[2])
+via the CSS3 tr:nth-child selectors, see StackOverflow. But
+the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://gorticus.github.com/blog/2012/09/09/zebra-tables-in-octopress-markdown/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Gorticus' brain" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34672095-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Gorticus' brain</a></h1>
+  
+    <h2>Brain and brain.  What is brain?!?</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:gorticus.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Zebra Tables in Octopress Markdown</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-09T23:09:00-04:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>The problem: post-local CSS</h2>
+
+<p>In a recent post, I wanted to add a zebra table ([<a href="http://en.wikipedia.org/wiki/Zebra_striping#CSS">1</a>],[<a href="http://www.alistapart.com/articles/zebratables/">2</a>])
+via the CSS3 <code>tr:nth-child</code> selectors, see <a href="http://stackoverflow.com/a/2765557">StackOverflow</a>.  But
+the default Octopress <a href="https://github.com/rtomayko/rdiscount">markdown</a> drove me crazy by wrapping
+everything in <code>&lt;p&gt;&lt;/p&gt;</code> which killed my <code>&lt;style&gt;</code> attempts.  After a
+quick glance at the <a href="http://daringfireball.net/projects/markdown/syntax#precode">markdown syntax doc</a> suggested I could use
+<code>&lt;div&gt;</code> to get around this.</p>
+
+<h2>An example</h2>
+
+<p>It is useful to define the style locally since a global definition
+may not fit all circumstances.  In the style below, we define a the
+table class <code>ztab1</code> along with a few other style elements to dress up
+the table.</p>
+
+<figure class='code'><figcaption><span>zebra table in default markdown</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;</span><span class="nt">div</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nt">style</span><span class="o">&gt;</span>
+</span><span class='line'>     <span class="nt">table</span><span class="nc">.ztab1</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">margin</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">font-size</span><span class="o">:</span> <span class="m">70</span><span class="o">%</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">steelblue</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">border-bottom</span><span class="o">:</span> <span class="m">2px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span><span class="o">,</span><span class="nt">td</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">padding</span><span class="o">:</span> <span class="m">4px</span> <span class="m">5px</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">odd</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">lightsteelblue</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">cornflowerblue</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<div>
+  <style>
+     table.ztab1 {
+        margin: auto;
+        font-size: 70%;
+        border: 1px solid black;
+      }
+
+      table.ztab1 th {
+        font-weight: bold;
+        background-color: steelblue;
+        text-align: center;
+        border-bottom: 2px solid black;
+      }
+
+      table.ztab1 th,td {
+        padding: 4px 5px;
+      }
+
+      table.ztab1 tr:nth-of-type(odd) {
+        background-color: lightsteelblue;
+      }
+
+      table.ztab1 tr:nth-of-type(even) {
+        background-color: cornflowerblue;
+      }
+  </style>
+</div>
+
+
+<h2>The result</h2>
+
+<p>Using the <code>ztab1</code> table class defined above allows us to input raw HTML
+table to produce</p>
+
+<table class="ztab1">
+  <tr>
+    <th>Counter</th>
+    <th>Animal</th>
+    <th>Collective Name</th>
+  </tr>
+  <tr>
+    <td style="text-align: center;">1</td>
+    <td>apes</td>
+    <td>shrewdness</td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">2</td>
+    <td>bees</td>
+    <td>grist</td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">3</td>
+    <td>mules</td>
+    <td>rake</td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">4</td>
+    <td>owls</td>
+    <td>parliament</td>
+  </tr>
+</table>
+
+
+<p>&nbsp;</p>
+
+<p>The first column entries are centered by</p>
+
+<figure class='code'><figcaption><span>Center first column entry</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;</span><span class="nt">td</span> <span class="nt">style</span><span class="o">=</span><span class="s2">&quot;text-align: center;&quot;</span><span class="o">&gt;</span><span class="nt">1</span><span class="o">&lt;/</span><span class="nt">td</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Conclusion</h1>
+
+<p>Using a <code>&lt;div&gt;</code> tag wrapper prevents the default Octopress markdown from
+eating <code>&lt;style&gt;</code> definitions.  However a better solution would be to
+change the markdown parser, as suggested by <a href="http://oblita.com/blog/2012/07/06/octopress-with-mathjax-by-kramdown/">Chico</a> and <a href="http://www.whatwherewhy.me/blog/2012/01/15/changing-the-markdown-processor-in-octopress/">Aral Balkan</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jason Mitchell</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-09T23:09:00-04:00" pubdate data-updated="true">Sep 9<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/css/'>css</a>, <a class='category' href='/blog/categories/markdown/'>markdown</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://gorticus.github.com/blog/2012/09/09/zebra-tables-in-octopress-markdown/" data-via="" data-counturl="http://gorticus.github.com/blog/2012/09/09/zebra-tables-in-octopress-markdown/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/09/ol-and-ul-alignment-in-octopress/" title="Previous Post: OL and UL alignment in Octopress">&laquo; OL and UL alignment in Octopress</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/09/zebra-tables-in-octopress-markdown/">Zebra tables in Octopress markdown</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/09/ol-and-ul-alignment-in-octopress/">OL and UL alignment in Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/09/octopress-via-github-on-mac-os-x-lion-10-dot-7/">Octopress via GitHub on Mac OS X Lion (10.7)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/08/uryyb-jbeyq-slash/">Uryyb jbeyq!</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/gorticus">@gorticus</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'gorticus',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Jason Mitchell -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
