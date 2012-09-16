@@ -12,7 +12,7 @@ In a recent post, I wanted to add a zebra table ([[1][L0]],[[2][L1]])
 via the CSS3 `tr:nth-child`{:lang=html} selectors, see
 [StackOverflow][L2].  But the default Octopress [markdown][L3] drove me
 crazy by wrapping everything in `<p></p>`{:lang=html} which killed my
-`<style>`{:lang=html} attempts.  After a quick glance at the
+`<style>`{:lang=html} attempts.  A quick glance at the
 [markdown syntax doc][L4] suggested I could use `<div>`{:lang=html} to
 get around this.
 
