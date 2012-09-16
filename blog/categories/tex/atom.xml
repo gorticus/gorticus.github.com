@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tex | Gorticus' brain]]></title>
   <link href="http://gorticus.github.com/blog/categories/tex/atom.xml" rel="self"/>
   <link href="http://gorticus.github.com/"/>
-  <updated>2012-09-16T00:11:17-04:00</updated>
+  <updated>2012-09-16T00:38:30-04:00</updated>
   <id>http://gorticus.github.com/</id>
   <author>
     <name><![CDATA[Jason Mitchell]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Site updates]]></title>
+    <link href="http://gorticus.github.com/blog/2012/09/16/site-updates/"/>
+    <updated>2012-09-16T00:14:00-04:00</updated>
+    <id>http://gorticus.github.com/blog/2012/09/16/site-updates</id>
+    <content type="html"><![CDATA[<p>A few updates:</p>
+
+<ul>
+  <li><a href="http://www.mathjax.org/">MathJax</a> with help from
+    <ul>
+      <li><a href="http://oblita.com/blog/">chico</a>: <a href="http://oblita.com/blog/2012/07/06/octopress-with-mathjax-by-kramdown/">Octopress with MathJax by kramdown</a></li>
+      <li><a href="http://greglus.com/">Gregory Lussier</a>: 
+  <a href="http://greglus.com/blog/2011/11/29/integrate-MathJax-LaTeX-and-MathML-Markup-in-Octopress/">How to Integrate MathJax LaTeX Mathematics Markup in Octopress</a></li>
+      <li><a href="http://steshaw.org/">Steven Shaw</a>: <a href="http://steshaw.org/blog/2012/02/09/hello-mathjax/">Hello MathJax</a></li>
+    </ul>
+  </li>
+  <li>New theme
+    <ul>
+      <li><a href="http://melandri.net/">Alessandro Melandri</a>: <a href="https://github.com/amelandri/darkstripes">darkstripes</a> (as <a href="http://git-scm.com/book/en/Git-Tools-Submodules">submodule</a>)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>One annoying thing that occurred with</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Installing darkstripes theme </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake install<span class="o">[</span>‘darkstripes’<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>was the over-writing of all my custom <code>sass</code>, e.g., styles, etc.  This
+seems a little unnecessary, since it’s already labeled <em>custom</em>.  Why not
+leave it, or move it out of the main theme, so it’s not stomped on theme
+switch.  If your custom changes message the theme, that should be up to
+you to fix.  Nuking things is never a good idea, unless we’re talking
+microwave.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Uninstalling MacTeX 2011]]></title>
