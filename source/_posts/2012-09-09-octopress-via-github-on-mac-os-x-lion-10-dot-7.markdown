@@ -6,14 +6,6 @@ comments: true
 categories: github ruby octopress setup
 ---
 
-<div>
-  <style>
-    body {
-      font-size: 95%;
-    }
-  </style>
-</div>
-
 Recently, as an educational experience, and a place to share lessons
 learned, I decided to setup this [Octopress](http://octopress.org/) blog
 hosted via [GitHub](http://github.com/).
