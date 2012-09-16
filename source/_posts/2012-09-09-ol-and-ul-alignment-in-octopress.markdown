@@ -14,7 +14,6 @@ categories: octopress css markdown
   </style>
 </div>
 The default [Octopress][L0] style does not indent OL and UL lists, i.e.,
-[L0]: http://www.octopress.com/
 
 <ul class="octo_default">
   <li>flight of bees</li>
@@ -33,13 +32,15 @@ I dislike this very much, and prefer
 
 After a quick search, Octopress [Issue #417][L1] provided the the simple 
 solution: add
-``` css Custom css in `sass/custom/_styles.scss` https://github.com/imathis/octopress/issues/417#issuecomment-3950721 Issue #417
+{% codeblock lang:css Custom css in `sass/custom/_styles.scss` https://github.com/imathis/octopress/issues/417#issuecomment-3950721 Issue #417 %}
 article {
   ol, ul {
     padding-left: 3em;
   }
 }
 
-```
+{% endcodeblock %}
 or any other custom css to `sass/custom/_styles.scss`.
+
+[L0]: http://www.octopress.com/
 [L1]: https://github.com/imathis/octopress/issues/417#issuecomment-3950721

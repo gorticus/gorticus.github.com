@@ -165,53 +165,53 @@ I _know_.  I tried it, and it was _painful_ undoing what I did.
 
 RVM seemed the best choice for me.  Being so tired after recovering my
 native Ruby, I thought I could simply
-```
+{% codeblock lang:bash Bad install of RVM %}
 $ sudo gem install rvm
-```
+{% endcodeblock %}
 but after some issues, I uninstalled it from the native ruby environment
 and followed the processes suggested on the [RVM quick install guide](https://rvm.io/rvm/install/)
-```
+{% codeblock lang:bash Better install of RVM %}
 curl -L https://get.rvm.io | bash -s stable
-```
+{% endcodeblock %}
 The first try, it failed with the error:
-```
+{% codeblock lang:bash Install error message %}
 You requested building with 'gcc-4.2' but it is not in your path.
-```
+{% endcodeblock %}
 and I discovered I had a `CC` environment variable set that pointed
 elsewhere.  So an `unset CC` and `rm -rf ~/.rvm`, then the install again
 was successful, however it warned me
-```
+{% codeblock lang:bash Another install error message %}
 RVM is not a function, selecting rubies with 'rvm use ...' will not work.
 You need to change your terminal settings to allow shell login.
 Please visit https://rvm.io/workflow/screen/ for example.
-```
+{% endcodeblock %}
 After checking the link, it all seemed unnecessarily complicated, but I
 did verify the warning:
-```
+{% codeblock lang:bash Is rvm a function? %}
 $ type rvm | head -n1
  -bash: type: rvm: not found.
-```
+{% endcodeblock %}
 The was easily solved by issuing
-```
+{% codeblock lang:bash Sourcing rvm setup %}
 [[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-```
+{% endcodeblock %}
 Trying the check again,
-```
+{% codeblock lang:bash Is rvm a function yet? %}
 $ type rvm | head -n1
 rvm is a function
-```
+{% endcodeblock %}
 things look good.  Simply adding it to your `.bash_profile` ensures it
 will be loaded each time you do login.
 
 My `rvm` install had already installed Ruby 1.9.3 selected selected it
 as the default, however you can verify and ensure this by
-```
+{% codeblock lang:bash Ruby version check %}
 $ ruby --version
 ruby 1.9.3p194 (2012-04-20 revision 35410) [x86_64-darwin11.4.0]
 $ rvm use 1.9.3
 Using /Users/username/.rvm/gems/ruby-1.9.3-p194
 Running /Users/username/.rvm/hooks/after_use
-```
+{% endcodeblock %}
 
 
 
@@ -231,20 +231,20 @@ described
 ### Octopress
 
 Clone the [Octopress repo](https://github.com/imathis/octopress/) with
-```
+{% codeblock lang:bash Cloning the Octopress repo %}
 $ git clone git://github.com/imathis/octopress.git octopress.git
 $ cd octopress.git  # trust the .rvmrc when asked, i.e. yes
-```
+{% endcodeblock %}
 Next, install the [bundler](http://gembundler.com/) Ruby gem
-```
+{% codeblock lang:bash Install bundler via rvm %}
 $ gem install bundler
 $ bundler install
-```
+{% endcodeblock %}
 which will installed a number of items.  Once complete, we can setup the
 default _classic_ theme with
-```
+{% codeblock lang:bash %}
 $ rake install
-```
+{% endcodeblock %}
 
 This repo will hold both your content and the Octopress code.  To update
 Octopress, see the [Updating Octopress](http://octopress.org/docs/updating/) guide.
@@ -254,21 +254,21 @@ Octopress, see the [Updating Octopress](http://octopress.org/docs/updating/) gui
 The [Deploying Octopress to GitHub Pages](http://octopress.org/docs/deploying/github/)
 instructions clearly outline how to accomplish this.  In summary, from
 the top of the `octopress.git` repo
-```
+{% codeblock lang:bash Connect repo to GitHub Page %}
 $ rake setup_github_pages
-```
+{% endcodeblock %}
 answering the questions as required, i.e., repo url is
 `git@github.com:username/username.github.com.git`.  Then,
-```
+{% codeblock lang:bash Generate pages and publish to GitHub Pages %}
 $ rake generate # generate the content from markdown
 $ rake deploy   # copy the content to be deployed
-```
+{% endcodeblock %}
 Commit and push your changes
-```
+{% codeblock lang:bash Commit changes %}
 $ git add .
 $ git commit -am 'initial import' # a very poor commit message :(
 $ git push origin source
-```
+{% endcodeblock %}
 The last line pushes _source_ to the _master_ branch of your GitHub repo.
 
 ### Waiting ...
@@ -286,22 +286,22 @@ functions and process to get your content to your GitHub repo.
 
 So far, I have found the `rake preview` version useful.  In one
 `Terminal.app` tab, I invoke
-```
+{% codeblock lang:bash Start preview on localhost %}
 $ rake preview  # start local web server
-```
+{% endcodeblock %}
 while in another, invoke
-```
+{% codeblock lang:bash Start change watcher for localhost %}
 $ rake watch    # auto-regen on change
-```
+{% endcodeblock %}
 while editing markdown in a third.  I verify my blog changes
 via browser on `localhost:port`.  The port will be
 listed on one of the first few `INFO` lines after _preview_ startup
-```
+{% codeblock lang:bash Finding the localhost port %}
 $ rake preview
 [2012-09-08 21:53:52] INFO  WEBrick 1.3.1
 [2012-09-08 21:53:52] INFO  ruby 1.9.3 (2012-04-20) [x86_64-darwin11.4.0]
 [2012-09-08 21:53:52] INFO  WEBrick::HTTPServer#start: pid=77869 port=4000
-```
+{% endcodeblock %}
 and voil&agrave;, we see `port=4000`, so `http://localhost:4000` should
 do it.
 

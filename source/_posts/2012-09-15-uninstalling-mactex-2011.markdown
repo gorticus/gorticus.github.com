@@ -8,9 +8,9 @@ categories: tex admin
 
 Before starting, ***read*** the disclaimer below.
 
-## Long live TeX!
+## Long live $\TeX$!
 
-If you are a Mac and TeX user, you are likely a [MacTeX][L0] user.  If
+If you are a Mac and $\TeX$ user, you are likely a [MacTeX][L0] user.  If
 you've been using it for a while, you have probably accumulated a fair
 number of versions, since it is on a roughly yearly release cycle.  To
 remove the cruft before installing a new release, I've taken to removing
@@ -25,18 +25,18 @@ there didn't seem to be a way (on 10.7.4) to export the file list.
 
 Like the uninstall procedure expects, you'll need access to the 2011
 `MacTeX.mpkg.zip` file. Make a directory and unzip the file
-``` bash Decompress the old installer package
+{% codeblock lang:bash Decompress the old installer package %}
 $ mkdir cleanup
 $ cd cleanup
 $ unzip /path/to/MacTeX.mpkg.zip
-```
+{% endcodeblock %}
 which could create a `MacTeX.mpkg` directory in your `pwd`.  Now you can
 build a table of contents from the archives included, assuming `bash`
-``` bash Generate TOC
+{% codeblock lang:bash Generate TOC %}
 for a in $(find MacTeX.mpkg -name Archive.pax.gz); do
   pax -zvf $a | awk '{print $9}' | sed -e 's/^.//'
 done > mactex.toc
-```
+{% endcodeblock %}
 Relax, it may take some time, on the order of a minute or two.
 
 ## Dirs and files
@@ -44,14 +44,14 @@ Relax, it may take some time, on the order of a minute or two.
 From the `toc`, the files and dirs can be separated.  We know two
 directories whose individual files and sub-directories will be removed
 wholesale
-``` bash Complete directory trees to be removed
+{% codeblock lang:bash Complete directory trees to be removed %}
 /Applications/TeX
 /usr/local/texlive/2011
-```
+{% endcodeblock %}
 These trees are filtered from the toc to reduce the noise in the output.
 A small script will `test` if a line is a directory (`-d`) or a regular
 file (`-f`)
-``` bash getem.sh: Filter toc for remaining files or dirs
+{% codeblock lang:bash getem.sh: Filter toc for remaining files or dirs %}
 #!/bin/bash
 
 I='mactex-2011-toc.txt'
@@ -69,10 +69,10 @@ esac
 for l in $(sed -E -e "/${P[0]}|${P[1]}/d" < $I); do
   test "$1" "$l" && echo "$l"
 done | sort -u > $O
-```
+{% endcodeblock %}
 The `P` var holds the `sed` patterns to filter everything below the tree
 heads identified above.  For my install, the directories output were
-``` bash Example directories culled
+{% codeblock lang:bash Example directories culled %}
 /Applications
 /Applications/TeX
 /Library
@@ -98,34 +98,35 @@ heads identified above.  For my install, the directories output were
 /usr/local/share/man/man1
 /usr/local/texlive
 /usr/local/texlive/2011
-```
+{% endcodeblock %}
 Clearly, there are some directories that should not be removed!  My
 revised dir list was
-``` bash mdirs-short.txt: Realistic dirs to remove
+{% codeblock lang:bash mdirs-short.txt: Realistic dirs to remove %}
 /Applications/TeX
 /usr/local/texlive/2011
 /usr/local/lib/ImageMagick-6.6.9
 /usr/local/share/ghostscript
-```
+{% endcodeblock %}
+
 So, in addition to the two trees we already expected to prune, the
 additional installed `ImageMagick` and `ghostscript` dirs will be
 removed.  These were removed by invoking
-``` bash Remove the realistic dirs
+{% codeblock lang:bash Remove the realistic dirs %}
 $ cat mdirs-short.txt | xargs sudo rm -rf
-```
+{% endcodeblock %}
 where `sudo` is necessary, as it was installed as `root`.  On to the
 files, like removing the dirs, invoke
-``` bash Removing remaining files
+{% codeblock lang:bash Removing remaining files %}
 $ cat mfiles.txt | xargs sudo rm -f
-```
+{% endcodeblock %}
 Once complete, you should feel about 1.7 GB lighter for the full install.
 
 ## The preference pane
 
 To remove the old preference pane from System Preferences
-``` bash Remove the preference pane
+{% codeblock lang:bash Remove the preference pane %}
 $ sudo rm -rf /Library/PreferencePanes/TeXDistPrefPane.prefPane
-```
+{% endcodeblock %}
 
 ## Comments
 
@@ -135,11 +136,11 @@ use the same process once you obtain a `toc` from the files.
 ## Now the upgrade
 
 Out with the old and in with the new.  The old cruft is gone and you can
-install the [new release][L3].  Happy TeX-ing.
+install the [new release][L3].  Happy $\TeX$-ing.
 
 ## Disclaimer
 
-This is the process I used to clean-up MacTeX 2011.  Use it at your own
+This is the process I used to clean-up Mac$\TeX$ 2011.  Use it at your own
 risk.  This procedure is provided *AS-IS* and without warranty of any
 kind.  In no event will I be liable for any damages arising out of the
 use or inability to use this process.  For example, if it causes wild
