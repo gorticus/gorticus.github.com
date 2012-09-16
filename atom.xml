@@ -4,7 +4,7 @@
   <title><![CDATA[Gorticus' brain]]></title>
   <link href="http://gorticus.github.com/atom.xml" rel="self"/>
   <link href="http://gorticus.github.com/"/>
-  <updated>2012-09-16T01:18:19-04:00</updated>
+  <updated>2012-09-16T01:41:51-04:00</updated>
   <id>http://gorticus.github.com/</id>
   <author>
     <name><![CDATA[Jason Mitchell]]></name>
@@ -289,7 +289,7 @@ mine.</p>
 via the CSS3 <code>tr:nth-child</code> selectors, see
 <a href="http://stackoverflow.com/a/2765557">StackOverflow</a>.  But the default Octopress <a href="https://github.com/rtomayko/rdiscount">markdown</a> drove me
 crazy by wrapping everything in <code>&lt;p&gt;&lt;/p&gt;</code> which killed my
-<code>&lt;style&gt;</code> attempts.  After a quick glance at the
+<code>&lt;style&gt;</code> attempts.  A quick glance at the
 <a href="http://daringfireball.net/projects/markdown/syntax#precode">markdown syntax doc</a> suggested I could use <code>&lt;div&gt;</code> to
 get around this.</p>
 
