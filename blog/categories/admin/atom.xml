@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: admin | Gorticus' brain]]></title>
+  <link href="http://gorticus.github.com/blog/categories/admin/atom.xml" rel="self"/>
+  <link href="http://gorticus.github.com/"/>
+  <updated>2012-09-15T20:09:11-04:00</updated>
+  <id>http://gorticus.github.com/</id>
+  <author>
+    <name><![CDATA[Jason Mitchell]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Uninstalling MacTeX 2011]]></title>
+    <link href="http://gorticus.github.com/blog/2012/09/15/uninstalling-mactex-2011/"/>
+    <updated>2012-09-15T17:47:00-04:00</updated>
+    <id>http://gorticus.github.com/blog/2012/09/15/uninstalling-mactex-2011</id>
+    <content type="html"><![CDATA[<p>Before starting, <strong><em>read</em></strong> the disclaimer below.</p>
+
+<h2>Long live TeX!</h2>
+
+<p>If you are a Mac and TeX user, you are likely a <a href="http://www.tug.org/mactex/">MacTeX</a> user.  If
+you've been using it for a while, you have probably accumulated a fair
+number of versions, since it is on a roughly yearly release cycle.  To
+remove the cruft before installing a new release, I've taken to removing
+the old installation.  If you've tried this, you may have looked at the
+uninstall instructions, e.g. for <a href="http://www.tug.org/mactex/2011/uninstalling.html">2011</a>, and found them to be, well,
+somewhat lacking, e.g. <a href="http://tex.stackexchange.com/q/26165">stackexchange</a>.  The last part, where the
+instructions suggest using <em>Show Files</em> from the installer, not
+particularly useful, given the number of files involved, and the fact
+there didn't seem to be a way (on 10.7.4) to export the file list.</p>
+
+<h2>What's installed</h2>
+
+<p>Like the uninstall procedure expects, you'll need access to the 2011
+<code>MacTeX.mpkg.zip</code> file. Make a directory and unzip the file
+<code>bash Decompress the old installer package
+$ mkdir cleanup
+$ cd cleanup
+$ unzip /path/to/MacTeX.mpkg.zip
+</code>
+which could create a <code>MacTeX.mpkg</code> directory in your <code>pwd</code>.  Now you can
+build a table of contents from the archives included, assuming <code>bash</code>
+<code>bash Generate TOC
+for a in $(find MacTeX.mpkg -name Archive.pax.gz); do
+  pax -zvf $a | awk '{print $9}' | sed -e 's/^.//'
+done &gt; mactex.toc
+</code>
+Relax, it may take some time, on the order of a minute or two.</p>
+
+<h2>Dirs and files</h2>
+
+<p>From the <code>toc</code>, the files and dirs can be separated.  We know two
+directories whose individual files and sub-directories will be removed
+wholesale
+<code>bash Complete directory trees to be removed
+/Applications/TeX
+/usr/local/texlive/2011
+</code>
+These trees are filtered from the toc to reduce the noise in the output.
+A small script will <code>test</code> if a line is a directory (<code>-d</code>) or a regular
+file (<code>-f</code>)
+``` bash getem.sh: Filter toc for remaining files or dirs</p>
+
+<h1>!/bin/bash</h1>
+
+<p>I='mactex-2011-toc.txt'
+P=( \
+  "<sup>\/usr\/local\/texlive\/2011\/.+$"</sup> \
+  "<sup>\/Applications\/TeX\/.+$"</sup> \
+)</p>
+
+<p>case "$1" in
+  -d) O='mdirs.txt';;
+  -f) O='mfiles.txt';;
+   *) echo "usage: getem.sh [-d|-f]"; exit 1;;
+esac</p>
+
+<p>for l in $(sed -E -e "/${P[0]}|${P[1]}/d" &lt; $I); do
+  test "$1" "$l" &amp;&amp; echo "$l"
+done | sort -u > $O
+<code>
+The `P` var holds the `sed` patterns to filter everything below the tree
+heads identified above.  For my install, the directories output were
+</code> bash Example directories culled
+/Applications
+/Applications/TeX
+/Library
+/Library/Fonts
+/usr
+/usr/local
+/usr/local/bin
+/usr/local/lib
+/usr/local/lib/ImageMagick-6.6.9
+/usr/local/lib/ImageMagick-6.6.9/modules-Q16
+/usr/local/lib/ImageMagick-6.6.9/modules-Q16/coders
+/usr/local/lib/ImageMagick-6.6.9/modules-Q16/filters
+/usr/local/share
+/usr/local/share/ghostscript
+/usr/local/share/ghostscript/9.02
+/usr/local/share/ghostscript/9.02/doc
+/usr/local/share/ghostscript/9.02/examples
+/usr/local/share/ghostscript/9.02/examples/cjk
+/usr/local/share/ghostscript/9.02/lib
+/usr/local/share/man
+/usr/local/share/man/de
+/usr/local/share/man/de/man1
+/usr/local/share/man/man1
+/usr/local/texlive
+/usr/local/texlive/2011
+<code>
+Clearly, there are some directories that should not be removed!  My
+revised dir list was
+</code> bash mdirs-short.txt: Realistic dirs to remove
+/Applications/TeX
+/usr/local/texlive/2011
+/usr/local/lib/ImageMagick-6.6.9
+/usr/local/share/ghostscript
+<code>
+So, in addition to the two trees we already expected to prune, the
+additional installed `ImageMagick` and `ghostscript` dirs will be
+removed.  These were removed by invoking
+</code> bash Remove the realistic dirs
+$ cat mdirs-short.txt | xargs sudo rm -rf
+<code>
+where `sudo` is necessary, as it was installed as `root`.  On to the
+files, like removing the dirs, invoke
+</code> bash Removing remaining files
+$ cat mfiles.txt | xargs sudo rm -f
+```
+Once complete, you should feel about 1.7 GB lighter for the full install.</p>
+
+<h2>The preference pane</h2>
+
+<p>To remove the old preference pane from System Preferences
+<code>bash Remove the preference pane
+$ sudo rm -rf /Library/PreferencePanes/TeXDistPrefPane.prefPane
+</code></p>
+
+<h2>Comments</h2>
+
+<p>If you instead installed the smaller package, or also added the extras,
+use the same process once you obtain a <code>toc</code> from the files.</p>
+
+<h2>Now the upgrade</h2>
+
+<p>Out with the old and in with the new.  The old cruft is gone and you can
+install the <a href="http://www.tug.org/mactex/">new release</a>.  Happy TeX-ing.</p>
+
+<h2>Disclaimer</h2>
+
+<p>This is the process I used to clean-up MacTeX 2011.  Use it at your own
+risk.  This procedure is provided <em>AS-IS</em> and without warranty of any
+kind.  In no event will I be liable for any damages arising out of the
+use or inability to use this process.  For example, if it causes wild
+flying monkeys to burst from your bum, proceed to rend your citadel
+down around your ears, put your old floppy disk into your toaster and
+use it to set fire to the detritus of your keep and salt the very earth,
+all while you watch from the last remaining parapet: your problem, not
+mine.</p>
+]]></content>
+  </entry>
+  
+</feed>
