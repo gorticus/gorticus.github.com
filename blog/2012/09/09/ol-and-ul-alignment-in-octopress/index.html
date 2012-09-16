@@ -25,9 +25,24 @@
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Gorticus' brain" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath:  [['$','$'], ['\\(','\\)']],
+      displayMath:  [['$$','$$'], ['\[','\]']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
   
   <script type="text/javascript">
@@ -47,10 +62,17 @@
 
 <body   >
   <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">&iquest;!</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
   <h1><a href="/">Gorticus' brain</a></h1>
   
     <h2>Brain and brain.  What is brain?!?</h2>
   
+  <div class="clear"></div>
 </hgroup>
 
 </header>
@@ -79,7 +101,9 @@
   
   <header>
     
-      <h1 class="entry-title">OL and UL Alignment in Octopress</h1>
+      
+        <h1 class="entry-title">OL and UL Alignment in Octopress</h1>
+      
     
     
       <p class="meta">
@@ -111,8 +135,6 @@
     }
   </style>
 </div>
-
-
 <p>The default <a href="http://www.octopress.com/">Octopress</a> style does not indent OL and UL lists, i.e.,</p>
 
 <ul class="octo_default">
@@ -122,9 +144,7 @@
   <li>murder of crows</li>
 </ul>
 
-
 <p>I dislike this very much, and prefer</p>
-
 <ul>
   <li>flight of bees</li>
   <li>lodge of beavers</li>
@@ -132,24 +152,23 @@
   <li>murder of crows</li>
 </ul>
 
-
-<p>After a quick search, Octopress <a href="https://github.com/imathis/octopress/issues/417#issuecomment-3950721">Issue #417</a> provided the the simple
+<p>After a quick search, Octopress <a href="https://github.com/imathis/octopress/issues/417#issuecomment-3950721">Issue #417</a> provided the the simple 
 solution: add</p>
 
-<figure class='code'><figcaption><span>Custom css in `sass/custom/_styles.scss` </span><a href='https://github.com/imathis/octopress/issues/417#issuecomment-3950721'>Issue #417</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">article</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">ol</span><span class="o">,</span> <span class="n">ul</span> <span class="err">{</span>
-</span><span class='line'>    <span class="k">padding-left</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="err">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Custom css in `sass/custom/_styles.scss`</span><a href="https://github.com/imathis/octopress/issues/417#issuecomment-3950721">Issue #417 </a></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="nt">article</span> <span class="p">{</span>
+</span><span class="line">  <span class="n">ol</span><span class="o">,</span> <span class="n">ul</span> <span class="err">{</span>
+</span><span class="line">    <span class="k">padding-left</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line"><span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>or any other custom css to <code>sass/custom/_styles.scss</code>.</p>
+
 </div>
 
 
@@ -195,10 +214,10 @@ solution: add</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/09/09/octopress-via-github-on-mac-os-x-lion-10-dot-7/" title="Previous Post: Octopress via GitHub on Mac OS X Lion (10.7)">&laquo; Octopress via GitHub on Mac OS X Lion (10.7)</a>
+        <a class="basic-alignment left articlenav" href="/blog/2012/09/09/octopress-via-github-on-mac-os-x-lion-10-dot-7/" title="Previous Post: Octopress via GitHub on Mac OS X Lion (10.7)">&laquo; Octopress via GitHub on Mac OS X Lion (10.7)</a>
       
       
-        <a class="basic-alignment right" href="/blog/2012/09/09/zebra-tables-in-octopress-markdown/" title="Next Post: Zebra tables in Octopress markdown">Zebra tables in Octopress markdown &raquo;</a>
+        <a class="basic-alignment right articlenav" href="/blog/2012/09/09/zebra-tables-in-octopress-markdown/" title="Next Post: Zebra tables in Octopress markdown">Zebra tables in Octopress markdown &raquo;</a>
       
     </p>
   </footer>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: admin | Gorticus' brain]]></title>
   <link href="http://gorticus.github.com/blog/categories/admin/atom.xml" rel="self"/>
   <link href="http://gorticus.github.com/"/>
-  <updated>2012-09-15T20:09:11-04:00</updated>
+  <updated>2012-09-16T00:11:17-04:00</updated>
   <id>http://gorticus.github.com/</id>
   <author>
     <name><![CDATA[Jason Mitchell]]></name>
@@ -20,139 +20,196 @@
     <id>http://gorticus.github.com/blog/2012/09/15/uninstalling-mactex-2011</id>
     <content type="html"><![CDATA[<p>Before starting, <strong><em>read</em></strong> the disclaimer below.</p>
 
-<h2>Long live TeX!</h2>
+<h2 id="long-live-tex">Long live $\TeX$!</h2>
 
-<p>If you are a Mac and TeX user, you are likely a <a href="http://www.tug.org/mactex/">MacTeX</a> user.  If
-you've been using it for a while, you have probably accumulated a fair
+<p>If you are a Mac and $\TeX$ user, you are likely a <a href="http://www.tug.org/mactex/">MacTeX</a> user.  If
+you’ve been using it for a while, you have probably accumulated a fair
 number of versions, since it is on a roughly yearly release cycle.  To
-remove the cruft before installing a new release, I've taken to removing
-the old installation.  If you've tried this, you may have looked at the
+remove the cruft before installing a new release, I’ve taken to removing
+the old installation.  If you’ve tried this, you may have looked at the
 uninstall instructions, e.g. for <a href="http://www.tug.org/mactex/2011/uninstalling.html">2011</a>, and found them to be, well,
 somewhat lacking, e.g. <a href="http://tex.stackexchange.com/q/26165">stackexchange</a>.  The last part, where the
 instructions suggest using <em>Show Files</em> from the installer, not
 particularly useful, given the number of files involved, and the fact
-there didn't seem to be a way (on 10.7.4) to export the file list.</p>
+there didn’t seem to be a way (on 10.7.4) to export the file list.</p>
 
-<h2>What's installed</h2>
+<h2 id="whats-installed">What’s installed</h2>
 
-<p>Like the uninstall procedure expects, you'll need access to the 2011
+<p>Like the uninstall procedure expects, you’ll need access to the 2011
 <code>MacTeX.mpkg.zip</code> file. Make a directory and unzip the file
-<code>bash Decompress the old installer package
-$ mkdir cleanup
-$ cd cleanup
-$ unzip /path/to/MacTeX.mpkg.zip
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Decompress the old installer package </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>mkdir cleanup
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>cleanup
+</span><span class='line'><span class="nv">$ </span>unzip /path/to/MacTeX.mpkg.zip
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 which could create a <code>MacTeX.mpkg</code> directory in your <code>pwd</code>.  Now you can
 build a table of contents from the archives included, assuming <code>bash</code>
-<code>bash Generate TOC
-for a in $(find MacTeX.mpkg -name Archive.pax.gz); do
-  pax -zvf $a | awk '{print $9}' | sed -e 's/^.//'
-done &gt; mactex.toc
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Generate TOC </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for </span>a in <span class="k">$(</span>find MacTeX.mpkg -name Archive.pax.gz<span class="k">)</span>; <span class="k">do</span>
+</span><span class='line'><span class="k">  </span>pax -zvf <span class="nv">$a</span> | awk ‘<span class="o">{</span>print <span class="nv">$9</span><span class="o">}</span>’ | sed -e ‘s/^.//’
+</span><span class='line'><span class="k">done</span> &amp;gt; mactex.toc
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 Relax, it may take some time, on the order of a minute or two.</p>
 
-<h2>Dirs and files</h2>
+<h2 id="dirs-and-files">Dirs and files</h2>
 
 <p>From the <code>toc</code>, the files and dirs can be separated.  We know two
 directories whose individual files and sub-directories will be removed
 wholesale
-<code>bash Complete directory trees to be removed
-/Applications/TeX
-/usr/local/texlive/2011
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Complete directory trees to be removed </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Applications/TeX
+</span><span class='line'>/usr/local/texlive/2011
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 These trees are filtered from the toc to reduce the noise in the output.
 A small script will <code>test</code> if a line is a directory (<code>-d</code>) or a regular
 file (<code>-f</code>)
-``` bash getem.sh: Filter toc for remaining files or dirs</p>
-
-<h1>!/bin/bash</h1>
-
-<p>I='mactex-2011-toc.txt'
-P=( \
-  "<sup>\/usr\/local\/texlive\/2011\/.+$"</sup> \
-  "<sup>\/Applications\/TeX\/.+$"</sup> \
-)</p>
-
-<p>case "$1" in
-  -d) O='mdirs.txt';;
-  -f) O='mfiles.txt';;
-   *) echo "usage: getem.sh [-d|-f]"; exit 1;;
-esac</p>
-
-<p>for l in $(sed -E -e "/${P[0]}|${P[1]}/d" &lt; $I); do
-  test "$1" "$l" &amp;&amp; echo "$l"
-done | sort -u > $O
-<code>
-The `P` var holds the `sed` patterns to filter everything below the tree
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>getem.sh: Filter toc for remaining files or dirs </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;I<span class="o">=</span>’mactex-2011-toc.txt’
+</span><span class='line'><span class="nv">P</span><span class="o">=(</span> <span class="se">\</span>
+</span><span class='line'>  “^<span class="se">\/</span>usr<span class="se">\/</span><span class="nb">local</span><span class="se">\/</span>texlive<span class="se">\/</span>2011<span class="se">\/</span>.+<span class="nv">$”</span> <span class="se">\</span>
+</span><span class='line'>  “^<span class="se">\/</span>Applications<span class="se">\/</span>TeX<span class="se">\/</span>.+<span class="nv">$”</span> <span class="se">\</span>
+</span><span class='line'><span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;case “<span class="nv">$1</span>” in
+</span><span class='line'>  -d<span class="o">)</span> <span class="nv">O</span><span class="o">=</span>’mdirs.txt’;;
+</span><span class='line'>  -f<span class="o">)</span> <span class="nv">O</span><span class="o">=</span>’mfiles.txt’;;
+</span><span class='line'>   *<span class="o">)</span> <span class="nb">echo</span> “usage: getem.sh <span class="o">[</span>-d|-f<span class="o">]</span>”; <span class="nb">exit </span>1;;
+</span><span class='line'><span class="k">esac</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;for l in <span class="k">$(</span>sed -E -e “/<span class="k">${</span><span class="nv">P</span><span class="p">[0]</span><span class="k">}</span>|<span class="k">${</span><span class="nv">P</span><span class="p">[1]</span><span class="k">}</span>/d” &amp;lt; <span class="nv">$I</span><span class="k">)</span>; <span class="k">do</span>
+</span><span class='line'><span class="k">  </span><span class="nb">test</span> “<span class="nv">$1</span>” “<span class="nv">$l</span>” &amp;amp;&amp;amp; <span class="nb">echo</span> “<span class="nv">$l</span>”
+</span><span class='line'><span class="k">done</span> | sort -u &amp;gt; <span class="nv">$O</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+The <code>P</code> var holds the <code>sed</code> patterns to filter everything below the tree
 heads identified above.  For my install, the directories output were
-</code> bash Example directories culled
-/Applications
-/Applications/TeX
-/Library
-/Library/Fonts
-/usr
-/usr/local
-/usr/local/bin
-/usr/local/lib
-/usr/local/lib/ImageMagick-6.6.9
-/usr/local/lib/ImageMagick-6.6.9/modules-Q16
-/usr/local/lib/ImageMagick-6.6.9/modules-Q16/coders
-/usr/local/lib/ImageMagick-6.6.9/modules-Q16/filters
-/usr/local/share
-/usr/local/share/ghostscript
-/usr/local/share/ghostscript/9.02
-/usr/local/share/ghostscript/9.02/doc
-/usr/local/share/ghostscript/9.02/examples
-/usr/local/share/ghostscript/9.02/examples/cjk
-/usr/local/share/ghostscript/9.02/lib
-/usr/local/share/man
-/usr/local/share/man/de
-/usr/local/share/man/de/man1
-/usr/local/share/man/man1
-/usr/local/texlive
-/usr/local/texlive/2011
-<code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Example directories culled </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Applications
+</span><span class='line'>/Applications/TeX
+</span><span class='line'>/Library
+</span><span class='line'>/Library/Fonts
+</span><span class='line'>/usr
+</span><span class='line'>/usr/local
+</span><span class='line'>/usr/local/bin
+</span><span class='line'>/usr/local/lib
+</span><span class='line'>/usr/local/lib/ImageMagick-6.6.9
+</span><span class='line'>/usr/local/lib/ImageMagick-6.6.9/modules-Q16
+</span><span class='line'>/usr/local/lib/ImageMagick-6.6.9/modules-Q16/coders
+</span><span class='line'>/usr/local/lib/ImageMagick-6.6.9/modules-Q16/filters
+</span><span class='line'>/usr/local/share
+</span><span class='line'>/usr/local/share/ghostscript
+</span><span class='line'>/usr/local/share/ghostscript/9.02
+</span><span class='line'>/usr/local/share/ghostscript/9.02/doc
+</span><span class='line'>/usr/local/share/ghostscript/9.02/examples
+</span><span class='line'>/usr/local/share/ghostscript/9.02/examples/cjk
+</span><span class='line'>/usr/local/share/ghostscript/9.02/lib
+</span><span class='line'>/usr/local/share/man
+</span><span class='line'>/usr/local/share/man/de
+</span><span class='line'>/usr/local/share/man/de/man1
+</span><span class='line'>/usr/local/share/man/man1
+</span><span class='line'>/usr/local/texlive
+</span><span class='line'>/usr/local/texlive/2011
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 Clearly, there are some directories that should not be removed!  My
 revised dir list was
-</code> bash mdirs-short.txt: Realistic dirs to remove
-/Applications/TeX
-/usr/local/texlive/2011
-/usr/local/lib/ImageMagick-6.6.9
-/usr/local/share/ghostscript
-<code>
-So, in addition to the two trees we already expected to prune, the
-additional installed `ImageMagick` and `ghostscript` dirs will be
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>mdirs-short.txt: Realistic dirs to remove </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Applications/TeX
+</span><span class='line'>/usr/local/texlive/2011
+</span><span class='line'>/usr/local/lib/ImageMagick-6.6.9
+</span><span class='line'>/usr/local/share/ghostscript
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>So, in addition to the two trees we already expected to prune, the
+additional installed <code>ImageMagick</code> and <code>ghostscript</code> dirs will be
 removed.  These were removed by invoking
-</code> bash Remove the realistic dirs
-$ cat mdirs-short.txt | xargs sudo rm -rf
-<code>
-where `sudo` is necessary, as it was installed as `root`.  On to the
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Remove the realistic dirs </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cat mdirs-short.txt | xargs sudo rm -rf
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+where <code>sudo</code> is necessary, as it was installed as <code>root</code>.  On to the
 files, like removing the dirs, invoke
-</code> bash Removing remaining files
-$ cat mfiles.txt | xargs sudo rm -f
-```
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Removing remaining files </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cat mfiles.txt | xargs sudo rm -f
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 Once complete, you should feel about 1.7 GB lighter for the full install.</p>
 
-<h2>The preference pane</h2>
+<h2 id="the-preference-pane">The preference pane</h2>
 
 <p>To remove the old preference pane from System Preferences
-<code>bash Remove the preference pane
-$ sudo rm -rf /Library/PreferencePanes/TeXDistPrefPane.prefPane
-</code></p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Remove the preference pane </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo rm -rf /Library/PreferencePanes/TeXDistPrefPane.prefPane
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h2>Comments</h2>
+<h2 id="comments">Comments</h2>
 
 <p>If you instead installed the smaller package, or also added the extras,
 use the same process once you obtain a <code>toc</code> from the files.</p>
 
-<h2>Now the upgrade</h2>
+<h2 id="now-the-upgrade">Now the upgrade</h2>
 
 <p>Out with the old and in with the new.  The old cruft is gone and you can
-install the <a href="http://www.tug.org/mactex/">new release</a>.  Happy TeX-ing.</p>
+install the <a href="http://www.tug.org/mactex/">new release</a>.  Happy $\TeX$-ing.</p>
 
-<h2>Disclaimer</h2>
+<h2 id="disclaimer">Disclaimer</h2>
 
-<p>This is the process I used to clean-up MacTeX 2011.  Use it at your own
+<p>This is the process I used to clean-up Mac$\TeX$ 2011.  Use it at your own
 risk.  This procedure is provided <em>AS-IS</em> and without warranty of any
 kind.  In no event will I be liable for any damages arising out of the
 use or inability to use this process.  For example, if it causes wild
@@ -161,6 +218,7 @@ down around your ears, put your old floppy disk into your toaster and
 use it to set fire to the detritus of your keep and salt the very earth,
 all while you watch from the last remaining parapet: your problem, not
 mine.</p>
+
 ]]></content>
   </entry>
   

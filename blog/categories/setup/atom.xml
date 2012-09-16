@@ -4,7 +4,7 @@
   <title><![CDATA[Category: setup | Gorticus' brain]]></title>
   <link href="http://gorticus.github.com/blog/categories/setup/atom.xml" rel="self"/>
   <link href="http://gorticus.github.com/"/>
-  <updated>2012-09-15T20:09:11-04:00</updated>
+  <updated>2012-09-16T00:11:17-04:00</updated>
   <id>http://gorticus.github.com/</id>
   <author>
     <name><![CDATA[Jason Mitchell]]></name>
@@ -18,20 +18,11 @@
     <link href="http://gorticus.github.com/blog/2012/09/09/octopress-via-github-on-mac-os-x-lion-10-dot-7/"/>
     <updated>2012-09-09T00:10:00-04:00</updated>
     <id>http://gorticus.github.com/blog/2012/09/09/octopress-via-github-on-mac-os-x-lion-10-dot-7</id>
-    <content type="html"><![CDATA[<div>
-  <style>
-    body {
-      font-size: 95%;
-    }
-  </style>
-</div>
-
-
-<p>Recently, as an educational experience, and a place to share lessons
+    <content type="html"><![CDATA[<p>Recently, as an educational experience, and a place to share lessons
 learned, I decided to setup this <a href="http://octopress.org/">Octopress</a> blog
 hosted via <a href="http://github.com/">GitHub</a>.</p>
 
-<h2>Configuration</h2>
+<h2 id="configuration">Configuration</h2>
 
 <p>While I have a Linux server at home, I do most of my work from my
 <em>Early 2008</em> MacBook.  Since I am a conditions to and a fan of the
@@ -133,19 +124,17 @@ installed.</p>
   </table>
 </div>
 
-
-<h2>Setup and pitfalls</h2>
+<h2 id="setup-and-pitfalls">Setup and pitfalls</h2>
 
 <p>In addition to the <a href="http://octopress.org/docs/setup/">Octopress documentation</a>, there are many
 excellent guides to setting up Octopress hosted via GitHub, e.g.,</p>
 
 <ul>
-<li><a href="http://www.zhubert.com/blog/2012/04/26/getting-started-with-octopress/">Getting Started With Octopress</a></li>
-<li><a href="http://robdodson.me/blog/2012/04/30/custom-domain-with-octopress-and-github-pages/">Custom Domain With Octopress and Github Pages</a></li>
-<li><a href="http://erjjones.github.com/blog/How-I-built-my-blog-in-one-day/">How I built my blog in one day</a></li>
-<li><a href="http://panchoat.org/blog/2012/05/26/setup-octopress-under-mac-os-x-lion/">Setup Octopress Under Mac OS X Lion</a></li>
+  <li><a href="http://www.zhubert.com/blog/2012/04/26/getting-started-with-octopress/">Getting Started With Octopress</a></li>
+  <li><a href="http://robdodson.me/blog/2012/04/30/custom-domain-with-octopress-and-github-pages/">Custom Domain With Octopress and Github Pages</a></li>
+  <li><a href="http://erjjones.github.com/blog/How-I-built-my-blog-in-one-day/">How I built my blog in one day</a></li>
+  <li><a href="http://panchoat.org/blog/2012/05/26/setup-octopress-under-mac-os-x-lion/">Setup Octopress Under Mac OS X Lion</a></li>
 </ul>
-
 
 <p>Studying these guides closely provided the outline for setting up my
 particularly instance.</p>
@@ -154,7 +143,7 @@ particularly instance.</p>
 instructions, and presumed I knew better, but order was important.  So,
 I present the following items in the order that finally worked for me.</p>
 
-<h3>Git</h3>
+<h3 id="git">Git</h3>
 
 <p><a href="http://git-scm.com/">Git</a> is the fashionable and powerful <a href="http://goo.gl/Qy5fz">revision control</a> system.  <a href="https://help.github.com/articles/set-up-git">Get it</a> and try it, even from
 <a href="http://try.github.com/">your browser</a>.</p>
@@ -163,10 +152,10 @@ I present the following items in the order that finally worked for me.</p>
 Mac GUI options, e.g.  <a href="http://gitx.frim.nl/">GitX</a> or
 <a href="http://www.sourcetreeapp.com/">SourceTree</a>.  GitX is flexible and works
 well enough, particularly to visualize branching.  SourceTree certainly
-looks glossy, however I have only toyed with it because I'm not a huge
+looks glossy, however I have only toyed with it because I’m not a huge
 fan of <a href="http://atlassian.com/">Atlassian</a>.</p>
 
-<h3>Getting the right Ruby</h3>
+<h3 id="getting-the-right-ruby">Getting the right Ruby</h3>
 
 <p>Octopress requires Ruby v1.9.3+.  There are a number of ways to get to
 v1.9.3 on the Mac: MacPorts, <a href="https://rvm.io/">Ruby Version Manager (RVM)</a>, <a href="https://github.com/sstephenson/rbenv">rbenv</a>.</p>
@@ -174,59 +163,75 @@ v1.9.3 on the Mac: MacPorts, <a href="https://rvm.io/">Ruby Version Manager (RVM
 <p>Upgrading the Apple native v1.8.x is <em>highly</em> discouraged.  Believe me.
 I <em>know</em>.  I tried it, and it was <em>painful</em> undoing what I did.</p>
 
-<h4>Ruby Version Manager</h4>
+<h4 id="ruby-version-manager">Ruby Version Manager</h4>
 
 <p>RVM seemed the best choice for me.  Being so tired after recovering my
 native Ruby, I thought I could simply
-<code>
-$ sudo gem install rvm
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Bad install of RVM </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo gem install rvm
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 but after some issues, I uninstalled it from the native ruby environment
 and followed the processes suggested on the <a href="https://rvm.io/rvm/install/">RVM quick install guide</a>
-<code>
-curl -L https://get.rvm.io | bash -s stable
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Better install of RVM </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://get.rvm.io | bash -s stable
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 The first try, it failed with the error:
-<code>
-You requested building with 'gcc-4.2' but it is not in your path.
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Install error message </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>You requested building with ‘gcc-4.2’ but it is not in your path.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 and I discovered I had a <code>CC</code> environment variable set that pointed
 elsewhere.  So an <code>unset CC</code> and <code>rm -rf ~/.rvm</code>, then the install again
 was successful, however it warned me
-<code>
-RVM is not a function, selecting rubies with 'rvm use ...' will not work.
-You need to change your terminal settings to allow shell login.
-Please visit https://rvm.io/workflow/screen/ for example.
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Another install error message </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>RVM is not a <span class="k">function</span>, selecting rubies with ‘rvm use …’ will not work.
+</span><span class='line'>You need to change your terminal settings to allow shell login.
+</span><span class='line'>Please visit https://rvm.io/workflow/screen/ <span class="k">for </span>example.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 After checking the link, it all seemed unnecessarily complicated, but I
 did verify the warning:
-<code>
-$ type rvm | head -n1
- -bash: type: rvm: not found.
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Is rvm a function? </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">type </span>rvm | head -n1
+</span><span class='line'> -bash: <span class="nb">type</span>: rvm: not found.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 The was easily solved by issuing
-<code>
-[[ -r "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; source "$HOME/.rvm/scripts/rvm"
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Sourcing rvm setup </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[[</span> -r “<span class="nv">$HOME</span>/.rvm/scripts/rvm” <span class="o">]]</span> &amp;amp;&amp;amp; <span class="nb">source</span> “<span class="nv">$HOME</span>/.rvm/scripts/rvm”
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 Trying the check again,
-<code>
-$ type rvm | head -n1
-rvm is a function
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Is rvm a function yet? </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">type </span>rvm | head -n1
+</span><span class='line'>rvm is a <span class="k">function</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 things look good.  Simply adding it to your <code>.bash_profile</code> ensures it
 will be loaded each time you do login.</p>
 
 <p>My <code>rvm</code> install had already installed Ruby 1.9.3 selected selected it
 as the default, however you can verify and ensure this by
-<code>
-$ ruby --version
-ruby 1.9.3p194 (2012-04-20 revision 35410) [x86_64-darwin11.4.0]
-$ rvm use 1.9.3
-Using /Users/username/.rvm/gems/ruby-1.9.3-p194
-Running /Users/username/.rvm/hooks/after_use
-</code></p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Ruby version check </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ruby –version
+</span><span class='line'>ruby 1.9.3p194 <span class="o">(</span>2012-04-20 revision 35410<span class="o">)</span> <span class="o">[</span>x86_64-darwin11.4.0<span class="o">]</span>
+</span><span class='line'><span class="nv">$ </span>rvm use 1.9.3
+</span><span class='line'>Using /Users/username/.rvm/gems/ruby-1.9.3-p194
+</span><span class='line'>Running /Users/username/.rvm/hooks/after_use
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h3>GitHub</h3>
+<h3 id="github">GitHub</h3>
 
 <p>First, as mentioned in all guides, sign up for a <a href="https://github.com/signup/free">free GitHub account</a>, and then create a repository
 for as indicated for <a href="https://help.github.com/articles/user-organization-and-project-pages">User Pages</a>.
@@ -238,50 +243,60 @@ adding a <code>README</code>.</p>
 described
 <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">here</a>.</p>
 
-<h3>Octopress</h3>
+<h3 id="octopress">Octopress</h3>
 
 <p>Clone the <a href="https://github.com/imathis/octopress/">Octopress repo</a> with
-<code>
-$ git clone git://github.com/imathis/octopress.git octopress.git
-$ cd octopress.git  # trust the .rvmrc when asked, i.e. yes
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Cloning the Octopress repo </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone git://github.com/imathis/octopress.git octopress.git
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>octopress.git  <span class="c"># trust the .rvmrc when asked, i.e. yes</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 Next, install the <a href="http://gembundler.com/">bundler</a> Ruby gem
-<code>
-$ gem install bundler
-$ bundler install
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Install bundler via rvm </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install bundler
+</span><span class='line'><span class="nv">$ </span>bundler install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 which will installed a number of items.  Once complete, we can setup the
 default <em>classic</em> theme with
-<code>
-$ rake install
-</code></p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake install
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>This repo will hold both your content and the Octopress code.  To update
 Octopress, see the <a href="http://octopress.org/docs/updating/">Updating Octopress</a> guide.</p>
 
-<h3>Connecting Octopress to GitHub</h3>
+<h3 id="connecting-octopress-to-github">Connecting Octopress to GitHub</h3>
 
 <p>The <a href="http://octopress.org/docs/deploying/github/">Deploying Octopress to GitHub Pages</a>
 instructions clearly outline how to accomplish this.  In summary, from
 the top of the <code>octopress.git</code> repo
-<code>
-$ rake setup_github_pages
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Connect repo to GitHub Page </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake setup_github_pages
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 answering the questions as required, i.e., repo url is
 <code>git@github.com:username/username.github.com.git</code>.  Then,
-<code>
-$ rake generate # generate the content from markdown
-$ rake deploy   # copy the content to be deployed
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Generate pages and publish to GitHub Pages </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake generate <span class="c"># generate the content from markdown</span>
+</span><span class='line'><span class="nv">$ </span>rake deploy   <span class="c"># copy the content to be deployed</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 Commit and push your changes
-<code>
-$ git add .
-$ git commit -am 'initial import' # a very poor commit message :(
-$ git push origin source
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Commit changes </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git add .
+</span><span class='line'><span class="nv">$ </span>git commit -am ‘initial import’ <span class="c"># a very poor commit message :(</span>
+</span><span class='line'><span class="nv">$ </span>git push origin <span class="nb">source</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 The last line pushes <em>source</em> to the <em>master</em> branch of your GitHub repo.</p>
 
-<h3>Waiting ...</h3>
+<h3 id="waiting-">Waiting …</h3>
 
 <p>Lastly comes the waiting.  GitHub recommends about 10 minutes.  My
 experience is that it take 1-5 min to receive the e-mail that the
@@ -289,39 +304,45 @@ page(s) have been created, and 10-15 min for the site to appear
 initially.  Afterwards, content appears much more quickly, at the 1-5
 min range.</p>
 
-<h2>Blogging</h2>
+<h2 id="blogging">Blogging</h2>
 
 <p>Finally, you are ready to generate content.  The <a href="http://octopress.org/docs/blogging/">Octopress Blogging Basics</a> page enumerate the helper
 functions and process to get your content to your GitHub repo.</p>
 
 <p>So far, I have found the <code>rake preview</code> version useful.  In one
 <code>Terminal.app</code> tab, I invoke
-<code>
-$ rake preview  # start local web server
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Start preview on localhost </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake preview  <span class="c"># start local web server</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 while in another, invoke
-<code>
-$ rake watch    # auto-regen on change
-</code>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Start change watcher for localhost </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake watch    <span class="c"># auto-regen on change</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 while editing markdown in a third.  I verify my blog changes
 via browser on <code>localhost:port</code>.  The port will be
 listed on one of the first few <code>INFO</code> lines after <em>preview</em> startup
-<code>
-$ rake preview
-[2012-09-08 21:53:52] INFO  WEBrick 1.3.1
-[2012-09-08 21:53:52] INFO  ruby 1.9.3 (2012-04-20) [x86_64-darwin11.4.0]
-[2012-09-08 21:53:52] INFO  WEBrick::HTTPServer#start: pid=77869 port=4000
-</code>
-and voil&agrave;, we see <code>port=4000</code>, so <code>http://localhost:4000</code> should
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Finding the localhost port </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake preview
+</span><span class='line'><span class="o">[</span>2012-09-08 21:53:52<span class="o">]</span> INFO  WEBrick 1.3.1
+</span><span class='line'><span class="o">[</span>2012-09-08 21:53:52<span class="o">]</span> INFO  ruby 1.9.3 <span class="o">(</span>2012-04-20<span class="o">)</span> <span class="o">[</span>x86_64-darwin11.4.0<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>2012-09-08 21:53:52<span class="o">]</span> INFO  WEBrick::HTTPServer#start: <span class="nv">pid</span><span class="o">=</span>77869 <span class="nv">port</span><span class="o">=</span>4000
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+and voilà, we see <code>port=4000</code>, so <code>http://localhost:4000</code> should
 do it.</p>
 
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>This was a straightforward process, once I thought more carefully about
 order of operations.  I also, unfortunately, messed up my repo to start
 due to a typo, which caused my <em>source</em> to push to a <em>source</em> branch in
 GitHub, rather than <em>master</em>.  This caused me no end of heartache as I
-waited for my pages to be created, but of course they weren't because
+waited for my pages to be created, but of course they weren’t because
 there was no master branch.  After a few repo deletes, and typing
 correctly, it finally worked.  Personally, I hope you have less trouble.</p>
 ]]></content>

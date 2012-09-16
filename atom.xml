@@ -4,7 +4,7 @@
   <title><![CDATA[Gorticus' brain]]></title>
   <link href="http://gorticus.github.com/atom.xml" rel="self"/>
   <link href="http://gorticus.github.com/"/>
-  <updated>2012-09-15T20:09:11-04:00</updated>
+  <updated>2012-09-16T00:11:17-04:00</updated>
   <id>http://gorticus.github.com/</id>
   <author>
     <name><![CDATA[Jason Mitchell]]></name>
@@ -20,212 +20,212 @@
     <id>http://gorticus.github.com/blog/2012/09/15/uninstalling-mactex-2011</id>
     <content type="html"><![CDATA[<p>Before starting, <strong><em>read</em></strong> the disclaimer below.</p>
 
-<h2>Long live TeX!</h2>
+<h2 id="long-live-tex">Long live $\TeX$!</h2>
 
-<p>If you are a Mac and TeX user, you are likely a <a href="http://www.tug.org/mactex/">MacTeX</a> user.  If
-you&#8217;ve been using it for a while, you have probably accumulated a fair
+<p>If you are a Mac and $\TeX$ user, you are likely a <a href="http://www.tug.org/mactex/">MacTeX</a> user.  If
+you’ve been using it for a while, you have probably accumulated a fair
 number of versions, since it is on a roughly yearly release cycle.  To
-remove the cruft before installing a new release, I&#8217;ve taken to removing
-the old installation.  If you&#8217;ve tried this, you may have looked at the
+remove the cruft before installing a new release, I’ve taken to removing
+the old installation.  If you’ve tried this, you may have looked at the
 uninstall instructions, e.g. for <a href="http://www.tug.org/mactex/2011/uninstalling.html">2011</a>, and found them to be, well,
 somewhat lacking, e.g. <a href="http://tex.stackexchange.com/q/26165">stackexchange</a>.  The last part, where the
 instructions suggest using <em>Show Files</em> from the installer, not
 particularly useful, given the number of files involved, and the fact
-there didn&#8217;t seem to be a way (on 10.7.4) to export the file list.</p>
+there didn’t seem to be a way (on 10.7.4) to export the file list.</p>
 
-<h2>What&#8217;s installed</h2>
+<h2 id="whats-installed">What’s installed</h2>
 
-<p>Like the uninstall procedure expects, you&#8217;ll need access to the 2011
+<p>Like the uninstall procedure expects, you’ll need access to the 2011
 <code>MacTeX.mpkg.zip</code> file. Make a directory and unzip the file</p>
 
-<figure class='code'><figcaption><span>Decompress the old installer package</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>mkdir cleanup
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>cleanup
-</span><span class='line'><span class="nv">$ </span>unzip /path/to/MacTeX.mpkg.zip
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Decompress the old installer package </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>mkdir cleanup
+</span><span class="line"><span class="nv">$ </span><span class="nb">cd </span>cleanup
+</span><span class="line"><span class="nv">$ </span>unzip /path/to/MacTeX.mpkg.zip
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>which could create a <code>MacTeX.mpkg</code> directory in your <code>pwd</code>.  Now you can
 build a table of contents from the archives included, assuming <code>bash</code></p>
 
-<figure class='code'><figcaption><span>Generate TOC</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for </span>a in <span class="k">$(</span>find MacTeX.mpkg -name Archive.pax.gz<span class="k">)</span>; <span class="k">do</span>
-</span><span class='line'><span class="k">  </span>pax -zvf <span class="nv">$a</span> | awk <span class="s1">&#39;{print $9}&#39;</span> | sed -e <span class="s1">&#39;s/^.//&#39;</span>
-</span><span class='line'><span class="k">done</span> &gt; mactex.toc
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Generate TOC </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="k">for </span>a in <span class="k">$(</span>find MacTeX.mpkg -name Archive.pax.gz<span class="k">)</span>; <span class="k">do</span>
+</span><span class="line"><span class="k">  </span>pax -zvf <span class="nv">$a</span> | awk <span class="s1">&#39;{print $9}&#39;</span> | sed -e <span class="s1">&#39;s/^.//&#39;</span>
+</span><span class="line"><span class="k">done</span> &gt; mactex.toc
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Relax, it may take some time, on the order of a minute or two.</p>
 
-<h2>Dirs and files</h2>
+<h2 id="dirs-and-files">Dirs and files</h2>
 
 <p>From the <code>toc</code>, the files and dirs can be separated.  We know two
 directories whose individual files and sub-directories will be removed
 wholesale</p>
 
-<figure class='code'><figcaption><span>Complete directory trees to be removed</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Applications/TeX
-</span><span class='line'>/usr/local/texlive/2011
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Complete directory trees to be removed </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">/Applications/TeX
+</span><span class="line">/usr/local/texlive/2011
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>These trees are filtered from the toc to reduce the noise in the output.
 A small script will <code>test</code> if a line is a directory (<code>-d</code>) or a regular
 file (<code>-f</code>)</p>
 
-<figure class='code'><figcaption><span>getem.sh: Filter toc for remaining files or dirs</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="nv">I</span><span class="o">=</span><span class="s1">&#39;mactex-2011-toc.txt&#39;</span>
-</span><span class='line'><span class="nv">P</span><span class="o">=(</span> <span class="se">\</span>
-</span><span class='line'>  <span class="s2">&quot;^\/usr\/local\/texlive\/2011\/.+$&quot;</span> <span class="se">\</span>
-</span><span class='line'>  <span class="s2">&quot;^\/Applications\/TeX\/.+$&quot;</span> <span class="se">\</span>
-</span><span class='line'><span class="o">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">case</span> <span class="s2">&quot;$1&quot;</span> in
-</span><span class='line'>  -d<span class="o">)</span> <span class="nv">O</span><span class="o">=</span><span class="s1">&#39;mdirs.txt&#39;</span>;;
-</span><span class='line'>  -f<span class="o">)</span> <span class="nv">O</span><span class="o">=</span><span class="s1">&#39;mfiles.txt&#39;</span>;;
-</span><span class='line'>   *<span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;usage: getem.sh [-d|-f]&quot;</span>; <span class="nb">exit </span>1;;
-</span><span class='line'><span class="k">esac</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for </span>l in <span class="k">$(</span>sed -E -e <span class="s2">&quot;/${P[0]}|${P[1]}/d&quot;</span> &lt; <span class="nv">$I</span><span class="k">)</span>; <span class="k">do</span>
-</span><span class='line'><span class="k">  </span><span class="nb">test</span> <span class="s2">&quot;$1&quot;</span> <span class="s2">&quot;$l&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;$l&quot;</span>
-</span><span class='line'><span class="k">done</span> | sort -u &gt; <span class="nv">$O</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>getem.sh: Filter toc for remaining files or dirs </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#!/bin/bash</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">I</span><span class="o">=</span><span class="s1">&#39;mactex-2011-toc.txt&#39;</span>
+</span><span class="line"><span class="nv">P</span><span class="o">=(</span> <span class="se">\</span>
+</span><span class="line">  <span class="s2">&quot;^\/usr\/local\/texlive\/2011\/.+$&quot;</span> <span class="se">\</span>
+</span><span class="line">  <span class="s2">&quot;^\/Applications\/TeX\/.+$&quot;</span> <span class="se">\</span>
+</span><span class="line"><span class="o">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">case</span> <span class="s2">&quot;$1&quot;</span> in
+</span><span class="line">  -d<span class="o">)</span> <span class="nv">O</span><span class="o">=</span><span class="s1">&#39;mdirs.txt&#39;</span>;;
+</span><span class="line">  -f<span class="o">)</span> <span class="nv">O</span><span class="o">=</span><span class="s1">&#39;mfiles.txt&#39;</span>;;
+</span><span class="line">   *<span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;usage: getem.sh [-d|-f]&quot;</span>; <span class="nb">exit </span>1;;
+</span><span class="line"><span class="k">esac</span>
+</span><span class="line">
+</span><span class="line"><span class="k">for </span>l in <span class="k">$(</span>sed -E -e <span class="s2">&quot;/${P[0]}|${P[1]}/d&quot;</span> &lt; <span class="nv">$I</span><span class="k">)</span>; <span class="k">do</span>
+</span><span class="line"><span class="k">  </span><span class="nb">test</span> <span class="s2">&quot;$1&quot;</span> <span class="s2">&quot;$l&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;$l&quot;</span>
+</span><span class="line"><span class="k">done</span> | sort -u &gt; <span class="nv">$O</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The <code>P</code> var holds the <code>sed</code> patterns to filter everything below the tree
 heads identified above.  For my install, the directories output were</p>
 
-<figure class='code'><figcaption><span>Example directories culled</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Applications
-</span><span class='line'>/Applications/TeX
-</span><span class='line'>/Library
-</span><span class='line'>/Library/Fonts
-</span><span class='line'>/usr
-</span><span class='line'>/usr/local
-</span><span class='line'>/usr/local/bin
-</span><span class='line'>/usr/local/lib
-</span><span class='line'>/usr/local/lib/ImageMagick-6.6.9
-</span><span class='line'>/usr/local/lib/ImageMagick-6.6.9/modules-Q16
-</span><span class='line'>/usr/local/lib/ImageMagick-6.6.9/modules-Q16/coders
-</span><span class='line'>/usr/local/lib/ImageMagick-6.6.9/modules-Q16/filters
-</span><span class='line'>/usr/local/share
-</span><span class='line'>/usr/local/share/ghostscript
-</span><span class='line'>/usr/local/share/ghostscript/9.02
-</span><span class='line'>/usr/local/share/ghostscript/9.02/doc
-</span><span class='line'>/usr/local/share/ghostscript/9.02/examples
-</span><span class='line'>/usr/local/share/ghostscript/9.02/examples/cjk
-</span><span class='line'>/usr/local/share/ghostscript/9.02/lib
-</span><span class='line'>/usr/local/share/man
-</span><span class='line'>/usr/local/share/man/de
-</span><span class='line'>/usr/local/share/man/de/man1
-</span><span class='line'>/usr/local/share/man/man1
-</span><span class='line'>/usr/local/texlive
-</span><span class='line'>/usr/local/texlive/2011
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Example directories culled </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">/Applications
+</span><span class="line">/Applications/TeX
+</span><span class="line">/Library
+</span><span class="line">/Library/Fonts
+</span><span class="line">/usr
+</span><span class="line">/usr/local
+</span><span class="line">/usr/local/bin
+</span><span class="line">/usr/local/lib
+</span><span class="line">/usr/local/lib/ImageMagick-6.6.9
+</span><span class="line">/usr/local/lib/ImageMagick-6.6.9/modules-Q16
+</span><span class="line">/usr/local/lib/ImageMagick-6.6.9/modules-Q16/coders
+</span><span class="line">/usr/local/lib/ImageMagick-6.6.9/modules-Q16/filters
+</span><span class="line">/usr/local/share
+</span><span class="line">/usr/local/share/ghostscript
+</span><span class="line">/usr/local/share/ghostscript/9.02
+</span><span class="line">/usr/local/share/ghostscript/9.02/doc
+</span><span class="line">/usr/local/share/ghostscript/9.02/examples
+</span><span class="line">/usr/local/share/ghostscript/9.02/examples/cjk
+</span><span class="line">/usr/local/share/ghostscript/9.02/lib
+</span><span class="line">/usr/local/share/man
+</span><span class="line">/usr/local/share/man/de
+</span><span class="line">/usr/local/share/man/de/man1
+</span><span class="line">/usr/local/share/man/man1
+</span><span class="line">/usr/local/texlive
+</span><span class="line">/usr/local/texlive/2011
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Clearly, there are some directories that should not be removed!  My
 revised dir list was</p>
 
-<figure class='code'><figcaption><span>mdirs-short.txt: Realistic dirs to remove</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Applications/TeX
-</span><span class='line'>/usr/local/texlive/2011
-</span><span class='line'>/usr/local/lib/ImageMagick-6.6.9
-</span><span class='line'>/usr/local/share/ghostscript
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>mdirs-short.txt: Realistic dirs to remove </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">/Applications/TeX
+</span><span class="line">/usr/local/texlive/2011
+</span><span class="line">/usr/local/lib/ImageMagick-6.6.9
+</span><span class="line">/usr/local/share/ghostscript
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>So, in addition to the two trees we already expected to prune, the
 additional installed <code>ImageMagick</code> and <code>ghostscript</code> dirs will be
 removed.  These were removed by invoking</p>
 
-<figure class='code'><figcaption><span>Remove the realistic dirs</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cat mdirs-short.txt | xargs sudo rm -rf
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Remove the realistic dirs </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>cat mdirs-short.txt | xargs sudo rm -rf
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>where <code>sudo</code> is necessary, as it was installed as <code>root</code>.  On to the
 files, like removing the dirs, invoke</p>
 
-<figure class='code'><figcaption><span>Removing remaining files</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cat mfiles.txt | xargs sudo rm -f
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Removing remaining files </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>cat mfiles.txt | xargs sudo rm -f
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Once complete, you should feel about 1.7 GB lighter for the full install.</p>
 
-<h2>The preference pane</h2>
+<h2 id="the-preference-pane">The preference pane</h2>
 
 <p>To remove the old preference pane from System Preferences</p>
 
-<figure class='code'><figcaption><span>Remove the preference pane</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo rm -rf /Library/PreferencePanes/TeXDistPrefPane.prefPane
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Remove the preference pane </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>sudo rm -rf /Library/PreferencePanes/TeXDistPrefPane.prefPane
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h2>Comments</h2>
+<h2 id="comments">Comments</h2>
 
 <p>If you instead installed the smaller package, or also added the extras,
 use the same process once you obtain a <code>toc</code> from the files.</p>
 
-<h2>Now the upgrade</h2>
+<h2 id="now-the-upgrade">Now the upgrade</h2>
 
 <p>Out with the old and in with the new.  The old cruft is gone and you can
-install the <a href="http://www.tug.org/mactex/">new release</a>.  Happy TeX-ing.</p>
+install the <a href="http://www.tug.org/mactex/">new release</a>.  Happy $\TeX$-ing.</p>
 
-<h2>Disclaimer</h2>
+<h2 id="disclaimer">Disclaimer</h2>
 
-<p>This is the process I used to clean-up MacTeX 2011.  Use it at your own
+<p>This is the process I used to clean-up Mac$\TeX$ 2011.  Use it at your own
 risk.  This procedure is provided <em>AS-IS</em> and without warranty of any
 kind.  In no event will I be liable for any damages arising out of the
 use or inability to use this process.  For example, if it causes wild
@@ -234,6 +234,7 @@ down around your ears, put your old floppy disk into your toaster and
 use it to set fire to the detritus of your keep and salt the very earth,
 all while you watch from the last remaining parapet: your problem, not
 mine.</p>
+
 ]]></content>
   </entry>
   
@@ -242,82 +243,81 @@ mine.</p>
     <link href="http://gorticus.github.com/blog/2012/09/09/zebra-tables-in-octopress-markdown/"/>
     <updated>2012-09-09T23:09:00-04:00</updated>
     <id>http://gorticus.github.com/blog/2012/09/09/zebra-tables-in-octopress-markdown</id>
-    <content type="html"><![CDATA[<h2>The problem: post-local CSS</h2>
+    <content type="html"><![CDATA[<h2 id="the-problem-post-local-css">The problem: post-local CSS</h2>
 
 <p>In a recent post, I wanted to add a zebra table ([<a href="http://en.wikipedia.org/wiki/Zebra_striping#CSS">1</a>],[<a href="http://www.alistapart.com/articles/zebratables/">2</a>])
-via the CSS3 <code>tr:nth-child</code> selectors, see <a href="http://stackoverflow.com/a/2765557">StackOverflow</a>.  But
-the default Octopress <a href="https://github.com/rtomayko/rdiscount">markdown</a> drove me crazy by wrapping
-everything in <code>&lt;p&gt;&lt;/p&gt;</code> which killed my <code>&lt;style&gt;</code> attempts.  After a
-quick glance at the <a href="http://daringfireball.net/projects/markdown/syntax#precode">markdown syntax doc</a> suggested I could use
-<code>&lt;div&gt;</code> to get around this.</p>
+via the CSS3 <code>tr:nth-child</code> selectors, see
+<a href="http://stackoverflow.com/a/2765557">StackOverflow</a>.  But the default Octopress <a href="https://github.com/rtomayko/rdiscount">markdown</a> drove me
+crazy by wrapping everything in <code>&lt;p&gt;&lt;/p&gt;</code> which killed my
+<code>&lt;style&gt;</code> attempts.  After a quick glance at the
+<a href="http://daringfireball.net/projects/markdown/syntax#precode">markdown syntax doc</a> suggested I could use <code>&lt;div&gt;</code> to
+get around this.</p>
 
-<h2>An example</h2>
+<h2 id="an-example">An example</h2>
 
 <p>It is useful to define the style locally since a global definition
 may not fit all circumstances.  In the style below, we define a the
-table class <code>ztab1</code> along with a few other style elements to dress up
-the table.</p>
+table class <code>ztab1</code> along with a few other style elements to
+dress up the table.</p>
 
-<figure class='code'><figcaption><span>zebra table in default markdown</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;</span><span class="nt">div</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="nt">style</span><span class="o">&gt;</span>
-</span><span class='line'>     <span class="nt">table</span><span class="nc">.ztab1</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">margin</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">font-size</span><span class="o">:</span> <span class="m">70</span><span class="o">%</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">steelblue</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">border-bottom</span><span class="o">:</span> <span class="m">2px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span><span class="o">,</span><span class="nt">td</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">padding</span><span class="o">:</span> <span class="m">4px</span> <span class="m">5px</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">odd</span><span class="o">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">lightsteelblue</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">cornflowerblue</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>  <span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>zebra table in default markdown </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="o">&lt;</span><span class="nt">div</span><span class="o">&gt;</span>
+</span><span class="line">  <span class="o">&lt;</span><span class="nt">style</span><span class="o">&gt;</span>
+</span><span class="line">     <span class="nt">table</span><span class="nc">.ztab1</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">margin</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+</span><span class="line">        <span class="k">font-size</span><span class="o">:</span> <span class="m">70</span><span class="o">%</span><span class="p">;</span>
+</span><span class="line">        <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+</span><span class="line">        <span class="k">background-color</span><span class="o">:</span> <span class="nb">steelblue</span><span class="p">;</span>
+</span><span class="line">        <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+</span><span class="line">        <span class="k">border-bottom</span><span class="o">:</span> <span class="m">2px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span><span class="o">,</span><span class="nt">td</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">padding</span><span class="o">:</span> <span class="m">4px</span> <span class="m">5px</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">odd</span><span class="o">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">background-color</span><span class="o">:</span> <span class="nb">lightsteelblue</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">background-color</span><span class="o">:</span> <span class="nb">cornflowerblue</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">  <span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</span><span class="line"><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <div>
   <style>
@@ -348,11 +348,10 @@ the table.</p>
   </style>
 </div>
 
+<h2 id="the-result">The result</h2>
 
-<h2>The result</h2>
-
-<p>Using the <code>ztab1</code> table class defined above allows us to input raw HTML
-table to produce</p>
+<p>Using the <code>ztab1</code> table class defined above allows us to
+input raw HTML table to produce</p>
 
 <table class="ztab1">
   <tr>
@@ -381,22 +380,22 @@ table to produce</p>
     <td>parliament</td>
   </tr>
 </table>
-
-
-<p>&nbsp;</p>
+<p><br /></p>
 
 <p>The first column entries are centered by</p>
 
-<figure class='code'><figcaption><span>Center first column entry</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;</span><span class="nt">td</span> <span class="nt">style</span><span class="o">=</span><span class="s2">&quot;text-align: center;&quot;</span><span class="o">&gt;</span><span class="nt">1</span><span class="o">&lt;/</span><span class="nt">td</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Center first column entry </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="o">&lt;</span><span class="nt">td</span> <span class="nt">style</span><span class="o">=</span><span class="s2">&quot;text-align: center;&quot;</span><span class="o">&gt;</span><span class="nt">1</span><span class="o">&lt;/</span><span class="nt">td</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<h2 id="conclusion">Conclusion</h2>
 
-<h1>Conclusion</h1>
+<p>wsing a <code>&lt;div&gt;</code> tag wrapper prevents the default Octopress
+markdown from eating <code>&lt;style&gt;</code> definitions.  However a
+better solution would be to change the markdown parser, as suggested by
+<a href="http://oblita.com/blog/2012/07/06/octopress-with-mathjax-by-kramdown/">Chico</a> and <a href="http://www.whatwherewhy.me/blog/2012/01/15/changing-the-markdown-processor-in-octopress/">Aral Balkan</a>.</p>
 
-<p>Using a <code>&lt;div&gt;</code> tag wrapper prevents the default Octopress markdown from
-eating <code>&lt;style&gt;</code> definitions.  However a better solution would be to
-change the markdown parser, as suggested by <a href="http://oblita.com/blog/2012/07/06/octopress-with-mathjax-by-kramdown/">Chico</a> and <a href="http://www.whatwherewhy.me/blog/2012/01/15/changing-the-markdown-processor-in-octopress/">Aral Balkan</a>.</p>
 ]]></content>
   </entry>
   
@@ -412,8 +411,6 @@ change the markdown parser, as suggested by <a href="http://oblita.com/blog/2012
     }
   </style>
 </div>
-
-
 <p>The default <a href="http://www.octopress.com/">Octopress</a> style does not indent OL and UL lists, i.e.,</p>
 
 <ul class="octo_default">
@@ -423,9 +420,7 @@ change the markdown parser, as suggested by <a href="http://oblita.com/blog/2012
   <li>murder of crows</li>
 </ul>
 
-
 <p>I dislike this very much, and prefer</p>
-
 <ul>
   <li>flight of bees</li>
   <li>lodge of beavers</li>
@@ -433,24 +428,23 @@ change the markdown parser, as suggested by <a href="http://oblita.com/blog/2012
   <li>murder of crows</li>
 </ul>
 
-
-<p>After a quick search, Octopress <a href="https://github.com/imathis/octopress/issues/417#issuecomment-3950721">Issue #417</a> provided the the simple
+<p>After a quick search, Octopress <a href="https://github.com/imathis/octopress/issues/417#issuecomment-3950721">Issue #417</a> provided the the simple 
 solution: add</p>
 
-<figure class='code'><figcaption><span>Custom css in `sass/custom/_styles.scss` </span><a href='https://github.com/imathis/octopress/issues/417#issuecomment-3950721'>Issue #417</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">article</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">ol</span><span class="o">,</span> <span class="n">ul</span> <span class="err">{</span>
-</span><span class='line'>    <span class="k">padding-left</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="err">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Custom css in `sass/custom/_styles.scss`</span><a href="https://github.com/imathis/octopress/issues/417#issuecomment-3950721">Issue #417 </a></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="nt">article</span> <span class="p">{</span>
+</span><span class="line">  <span class="n">ol</span><span class="o">,</span> <span class="n">ul</span> <span class="err">{</span>
+</span><span class="line">    <span class="k">padding-left</span><span class="o">:</span> <span class="m">3em</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line"><span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>or any other custom css to <code>sass/custom/_styles.scss</code>.</p>
+
 ]]></content>
   </entry>
   
@@ -459,20 +453,11 @@ solution: add</p>
     <link href="http://gorticus.github.com/blog/2012/09/09/octopress-via-github-on-mac-os-x-lion-10-dot-7/"/>
     <updated>2012-09-09T00:10:00-04:00</updated>
     <id>http://gorticus.github.com/blog/2012/09/09/octopress-via-github-on-mac-os-x-lion-10-dot-7</id>
-    <content type="html"><![CDATA[<div>
-  <style>
-    body {
-      font-size: 95%;
-    }
-  </style>
-</div>
-
-
-<p>Recently, as an educational experience, and a place to share lessons
+    <content type="html"><![CDATA[<p>Recently, as an educational experience, and a place to share lessons
 learned, I decided to setup this <a href="http://octopress.org/">Octopress</a> blog
 hosted via <a href="http://github.com/">GitHub</a>.</p>
 
-<h2>Configuration</h2>
+<h2 id="configuration">Configuration</h2>
 
 <p>While I have a Linux server at home, I do most of my work from my
 <em>Early 2008</em> MacBook.  Since I am a conditions to and a fan of the
@@ -574,19 +559,17 @@ installed.</p>
   </table>
 </div>
 
-
-<h2>Setup and pitfalls</h2>
+<h2 id="setup-and-pitfalls">Setup and pitfalls</h2>
 
 <p>In addition to the <a href="http://octopress.org/docs/setup/">Octopress documentation</a>, there are many
 excellent guides to setting up Octopress hosted via GitHub, e.g.,</p>
 
 <ul>
-<li><a href="http://www.zhubert.com/blog/2012/04/26/getting-started-with-octopress/">Getting Started With Octopress</a></li>
-<li><a href="http://robdodson.me/blog/2012/04/30/custom-domain-with-octopress-and-github-pages/">Custom Domain With Octopress and Github Pages</a></li>
-<li><a href="http://erjjones.github.com/blog/How-I-built-my-blog-in-one-day/">How I built my blog in one day</a></li>
-<li><a href="http://panchoat.org/blog/2012/05/26/setup-octopress-under-mac-os-x-lion/">Setup Octopress Under Mac OS X Lion</a></li>
+  <li><a href="http://www.zhubert.com/blog/2012/04/26/getting-started-with-octopress/">Getting Started With Octopress</a></li>
+  <li><a href="http://robdodson.me/blog/2012/04/30/custom-domain-with-octopress-and-github-pages/">Custom Domain With Octopress and Github Pages</a></li>
+  <li><a href="http://erjjones.github.com/blog/How-I-built-my-blog-in-one-day/">How I built my blog in one day</a></li>
+  <li><a href="http://panchoat.org/blog/2012/05/26/setup-octopress-under-mac-os-x-lion/">Setup Octopress Under Mac OS X Lion</a></li>
 </ul>
-
 
 <p>Studying these guides closely provided the outline for setting up my
 particularly instance.</p>
@@ -595,7 +578,7 @@ particularly instance.</p>
 instructions, and presumed I knew better, but order was important.  So,
 I present the following items in the order that finally worked for me.</p>
 
-<h3>Git</h3>
+<h3 id="git">Git</h3>
 
 <p><a href="http://git-scm.com/">Git</a> is the fashionable and powerful <a href="http://goo.gl/Qy5fz">revision control</a> system.  <a href="https://help.github.com/articles/set-up-git">Get it</a> and try it, even from
 <a href="http://try.github.com/">your browser</a>.</p>
@@ -604,10 +587,10 @@ I present the following items in the order that finally worked for me.</p>
 Mac GUI options, e.g.  <a href="http://gitx.frim.nl/">GitX</a> or
 <a href="http://www.sourcetreeapp.com/">SourceTree</a>.  GitX is flexible and works
 well enough, particularly to visualize branching.  SourceTree certainly
-looks glossy, however I have only toyed with it because I&#8217;m not a huge
+looks glossy, however I have only toyed with it because I’m not a huge
 fan of <a href="http://atlassian.com/">Atlassian</a>.</p>
 
-<h3>Getting the right Ruby</h3>
+<h3 id="getting-the-right-ruby">Getting the right Ruby</h3>
 
 <p>Octopress requires Ruby v1.9.3+.  There are a number of ways to get to
 v1.9.3 on the Mac: MacPorts, <a href="https://rvm.io/">Ruby Version Manager (RVM)</a>, <a href="https://github.com/sstephenson/rbenv">rbenv</a>.</p>
@@ -615,62 +598,69 @@ v1.9.3 on the Mac: MacPorts, <a href="https://rvm.io/">Ruby Version Manager (RVM
 <p>Upgrading the Apple native v1.8.x is <em>highly</em> discouraged.  Believe me.
 I <em>know</em>.  I tried it, and it was <em>painful</em> undoing what I did.</p>
 
-<h4>Ruby Version Manager</h4>
+<h4 id="ruby-version-manager">Ruby Version Manager</h4>
 
 <p>RVM seemed the best choice for me.  Being so tired after recovering my
 native Ruby, I thought I could simply</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo gem install rvm</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Bad install of RVM </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>sudo gem install rvm
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>but after some issues, I uninstalled it from the native ruby environment
 and followed the processes suggested on the <a href="https://rvm.io/rvm/install/">RVM quick install guide</a></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>curl -L https://get.rvm.io | bash -s stable</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Better install of RVM </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">curl -L https://get.rvm.io | bash -s stable
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The first try, it failed with the error:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>You requested building with 'gcc-4.2' but it is not in your path.</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Install error message </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">You requested building with <span class="s1">&#39;gcc-4.2&#39;</span> but it is not in your path.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>and I discovered I had a <code>CC</code> environment variable set that pointed
 elsewhere.  So an <code>unset CC</code> and <code>rm -rf ~/.rvm</code>, then the install again
 was successful, however it warned me</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>RVM is not a function, selecting rubies with 'rvm use ...' will not work.
-</span><span class='line'>You need to change your terminal settings to allow shell login.
-</span><span class='line'>Please visit https://rvm.io/workflow/screen/ for example.</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Another install error message </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">RVM is not a <span class="k">function</span>, selecting rubies with <span class="s1">&#39;rvm use ...&#39;</span> will not work.
+</span><span class="line">You need to change your terminal settings to allow shell login.
+</span><span class="line">Please visit https://rvm.io/workflow/screen/ <span class="k">for </span>example.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>After checking the link, it all seemed unnecessarily complicated, but I
 did verify the warning:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ type rvm | head -n1
-</span><span class='line'> -bash: type: rvm: not found.</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Is rvm a function? </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span><span class="nb">type </span>rvm | head -n1
+</span><span class="line"> -bash: <span class="nb">type</span>: rvm: not found.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The was easily solved by issuing</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Sourcing rvm setup </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="o">[[</span> -r <span class="s2">&quot;$HOME/.rvm/scripts/rvm&quot;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> <span class="s2">&quot;$HOME/.rvm/scripts/rvm&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Trying the check again,</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ type rvm | head -n1
-</span><span class='line'>rvm is a function</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Is rvm a function yet? </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span><span class="nb">type </span>rvm | head -n1
+</span><span class="line">rvm is a <span class="k">function</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>things look good.  Simply adding it to your <code>.bash_profile</code> ensures it
 will be loaded each time you do login.</p>
@@ -678,19 +668,20 @@ will be loaded each time you do login.</p>
 <p>My <code>rvm</code> install had already installed Ruby 1.9.3 selected selected it
 as the default, however you can verify and ensure this by</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ruby --version
-</span><span class='line'>ruby 1.9.3p194 (2012-04-20 revision 35410) [x86_64-darwin11.4.0]
-</span><span class='line'>$ rvm use 1.9.3
-</span><span class='line'>Using /Users/username/.rvm/gems/ruby-1.9.3-p194
-</span><span class='line'>Running /Users/username/.rvm/hooks/after_use</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Ruby version check </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>ruby --version
+</span><span class="line">ruby 1.9.3p194 <span class="o">(</span>2012-04-20 revision 35410<span class="o">)</span> <span class="o">[</span>x86_64-darwin11.4.0<span class="o">]</span>
+</span><span class="line"><span class="nv">$ </span>rvm use 1.9.3
+</span><span class="line">Using /Users/username/.rvm/gems/ruby-1.9.3-p194
+</span><span class="line">Running /Users/username/.rvm/hooks/after_use
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h3>GitHub</h3>
+<h3 id="github">GitHub</h3>
 
 <p>First, as mentioned in all guides, sign up for a <a href="https://github.com/signup/free">free GitHub account</a>, and then create a repository
 for as indicated for <a href="https://help.github.com/articles/user-organization-and-project-pages">User Pages</a>.
@@ -702,66 +693,71 @@ adding a <code>README</code>.</p>
 described
 <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">here</a>.</p>
 
-<h3>Octopress</h3>
+<h3 id="octopress">Octopress</h3>
 
 <p>Clone the <a href="https://github.com/imathis/octopress/">Octopress repo</a> with</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git://github.com/imathis/octopress.git octopress.git
-</span><span class='line'>$ cd octopress.git  # trust the .rvmrc when asked, i.e. yes</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Cloning the Octopress repo </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>git clone git://github.com/imathis/octopress.git octopress.git
+</span><span class="line"><span class="nv">$ </span><span class="nb">cd </span>octopress.git  <span class="c"># trust the .rvmrc when asked, i.e. yes</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Next, install the <a href="http://gembundler.com/">bundler</a> Ruby gem</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ gem install bundler
-</span><span class='line'>$ bundler install</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Install bundler via rvm </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>gem install bundler
+</span><span class="line"><span class="nv">$ </span>bundler install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>which will installed a number of items.  Once complete, we can setup the
 default <em>classic</em> theme with</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake install</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>rake install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>This repo will hold both your content and the Octopress code.  To update
 Octopress, see the <a href="http://octopress.org/docs/updating/">Updating Octopress</a> guide.</p>
 
-<h3>Connecting Octopress to GitHub</h3>
+<h3 id="connecting-octopress-to-github">Connecting Octopress to GitHub</h3>
 
 <p>The <a href="http://octopress.org/docs/deploying/github/">Deploying Octopress to GitHub Pages</a>
 instructions clearly outline how to accomplish this.  In summary, from
 the top of the <code>octopress.git</code> repo</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Connect repo to GitHub Page </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>rake setup_github_pages
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>answering the questions as required, i.e., repo url is
 <code>git@github.com:username/username.github.com.git</code>.  Then,</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake generate # generate the content from markdown
-</span><span class='line'>$ rake deploy   # copy the content to be deployed</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Generate pages and publish to GitHub Pages </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>rake generate <span class="c"># generate the content from markdown</span>
+</span><span class="line"><span class="nv">$ </span>rake deploy   <span class="c"># copy the content to be deployed</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Commit and push your changes</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git add .
-</span><span class='line'>$ git commit -am 'initial import' # a very poor commit message :(
-</span><span class='line'>$ git push origin source</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Commit changes </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>git add .
+</span><span class="line"><span class="nv">$ </span>git commit -am <span class="s1">&#39;initial import&#39;</span> <span class="c"># a very poor commit message :(</span>
+</span><span class="line"><span class="nv">$ </span>git push origin <span class="nb">source</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The last line pushes <em>source</em> to the <em>master</em> branch of your GitHub repo.</p>
 
-<h3>Waiting &#8230;</h3>
+<h3 id="waiting-">Waiting …</h3>
 
 <p>Lastly comes the waiting.  GitHub recommends about 10 minutes.  My
 experience is that it take 1-5 min to receive the e-mail that the
@@ -769,7 +765,7 @@ page(s) have been created, and 10-15 min for the site to appear
 initially.  Afterwards, content appears much more quickly, at the 1-5
 min range.</p>
 
-<h2>Blogging</h2>
+<h2 id="blogging">Blogging</h2>
 
 <p>Finally, you are ready to generate content.  The <a href="http://octopress.org/docs/blogging/">Octopress Blogging Basics</a> page enumerate the helper
 functions and process to get your content to your GitHub repo.</p>
@@ -777,40 +773,43 @@ functions and process to get your content to your GitHub repo.</p>
 <p>So far, I have found the <code>rake preview</code> version useful.  In one
 <code>Terminal.app</code> tab, I invoke</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake preview  # start local web server</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Start preview on localhost </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>rake preview  <span class="c"># start local web server</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>while in another, invoke</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake watch    # auto-regen on change</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Start change watcher for localhost </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>rake watch    <span class="c"># auto-regen on change</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>while editing markdown in a third.  I verify my blog changes
 via browser on <code>localhost:port</code>.  The port will be
 listed on one of the first few <code>INFO</code> lines after <em>preview</em> startup</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake preview
-</span><span class='line'>[2012-09-08 21:53:52] INFO  WEBrick 1.3.1
-</span><span class='line'>[2012-09-08 21:53:52] INFO  ruby 1.9.3 (2012-04-20) [x86_64-darwin11.4.0]
-</span><span class='line'>[2012-09-08 21:53:52] INFO  WEBrick::HTTPServer#start: pid=77869 port=4000</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Finding the localhost port </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>rake preview
+</span><span class="line"><span class="o">[</span>2012-09-08 21:53:52<span class="o">]</span> INFO  WEBrick 1.3.1
+</span><span class="line"><span class="o">[</span>2012-09-08 21:53:52<span class="o">]</span> INFO  ruby 1.9.3 <span class="o">(</span>2012-04-20<span class="o">)</span> <span class="o">[</span>x86_64-darwin11.4.0<span class="o">]</span>
+</span><span class="line"><span class="o">[</span>2012-09-08 21:53:52<span class="o">]</span> INFO  WEBrick::HTTPServer#start: <span class="nv">pid</span><span class="o">=</span>77869 <span class="nv">port</span><span class="o">=</span>4000
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<p>and voil&agrave;, we see <code>port=4000</code>, so <code>http://localhost:4000</code> should
+<p>and voilà, we see <code>port=4000</code>, so <code>http://localhost:4000</code> should
 do it.</p>
 
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>This was a straightforward process, once I thought more carefully about
 order of operations.  I also, unfortunately, messed up my repo to start
 due to a typo, which caused my <em>source</em> to push to a <em>source</em> branch in
 GitHub, rather than <em>master</em>.  This caused me no end of heartache as I
-waited for my pages to be created, but of course they weren&#8217;t because
+waited for my pages to be created, but of course they weren’t because
 there was no master branch.  After a few repo deletes, and typing
 correctly, it finally worked.  Personally, I hope you have less trouble.</p>
 ]]></content>
@@ -821,20 +820,28 @@ correctly, it finally worked.  Personally, I hope you have less trouble.</p>
     <link href="http://gorticus.github.com/blog/2012/09/08/uryyb-jbeyq-slash/"/>
     <updated>2012-09-08T21:43:00-04:00</updated>
     <id>http://gorticus.github.com/blog/2012/09/08/uryyb-jbeyq-slash</id>
-    <content type="html"><![CDATA[<p>Probably not the blog you&#8217;re looking for &#8230; move along.</p>
+    <content type="html"><![CDATA[<p>Probably not the blog you’re looking for … move along.</p>
 
 <p>The stack:</p>
 
 <ul>
-<li><a href="http://octopress.org/">Octopress</a> v2.0+</li>
-<li><a href="http://github.com/">GitHub</a></li>
-<li><a href="http://www.vim.org/">VIM</a> v7.3+</li>
-<li><a href="http://scm.com/">git</a> v1.7.11.5+</li>
-<li><a href="http://ruby-lang.org/">ruby</a> v1.9.3+</li>
-<li><a href="https://rvm.io/">rvm</a> v1.15.8+ (stable)</li>
-<li><a href="http://www.rot13.com/">rot13</a></li>
+  <li><a href="http://octopress.org/">Octopress</a> v2.0+</li>
+  <li><a href="http://github.com/">GitHub</a></li>
+  <li><a href="http://www.vim.org/">VIM</a> v7.3+</li>
+  <li><a href="http://scm.com/">git</a> v1.7.11.5+</li>
+  <li><a href="http://ruby-lang.org/">ruby</a> v1.9.3+</li>
+  <li><a href="https://rvm.io/">rvm</a> v1.15.8+ (stable)</li>
+  <li><a href="http://kramdown.rubyforge.org/">kramdown</a> v0.13.7</li>
+  <li><a href="http://www.mathjax.org/">MathJax</a></li>
+  <li><a href="http://www.rot13.com/">rot13</a></li>
 </ul>
 
+<p>Now, with $\LaTeX$y goodness!</p>
+
+<script type="math/tex; mode=display">
+\ddot{\mathbf{r}} - \frac{\mu}{r^3}\mathbf{r} = \epsilon
+\left(\mathbf{F} + \mathbf{\nabla}\mathcal{V}\right)
+</script>
 ]]></content>
   </entry>
   

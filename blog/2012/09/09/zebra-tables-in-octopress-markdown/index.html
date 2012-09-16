@@ -10,8 +10,8 @@
 
   
   <meta name="description" content="The problem: post-local CSS In a recent post, I wanted to add a zebra table ([1],[2])
-via the CSS3 tr:nth-child selectors, see StackOverflow. But
-the &hellip;">
+via the CSS3 tr:nth-child selectors, see
+StackOverflow. But the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -27,9 +27,24 @@ the &hellip;">
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Gorticus' brain" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath:  [['$','$'], ['\\(','\\)']],
+      displayMath:  [['$$','$$'], ['\[','\]']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
   
   <script type="text/javascript">
@@ -49,10 +64,17 @@ the &hellip;">
 
 <body   >
   <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">&iquest;!</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
   <h1><a href="/">Gorticus' brain</a></h1>
   
     <h2>Brain and brain.  What is brain?!?</h2>
   
+  <div class="clear"></div>
 </hgroup>
 
 </header>
@@ -81,7 +103,9 @@ the &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Zebra Tables in Octopress Markdown</h1>
+      
+        <h1 class="entry-title">Zebra Tables in Octopress Markdown</h1>
+      
     
     
       <p class="meta">
@@ -106,82 +130,81 @@ the &hellip;">
   </header>
 
 
-<div class="entry-content"><h2>The problem: post-local CSS</h2>
+<div class="entry-content"><h2 id="the-problem-post-local-css">The problem: post-local CSS</h2>
 
 <p>In a recent post, I wanted to add a zebra table ([<a href="http://en.wikipedia.org/wiki/Zebra_striping#CSS">1</a>],[<a href="http://www.alistapart.com/articles/zebratables/">2</a>])
-via the CSS3 <code>tr:nth-child</code> selectors, see <a href="http://stackoverflow.com/a/2765557">StackOverflow</a>.  But
-the default Octopress <a href="https://github.com/rtomayko/rdiscount">markdown</a> drove me crazy by wrapping
-everything in <code>&lt;p&gt;&lt;/p&gt;</code> which killed my <code>&lt;style&gt;</code> attempts.  After a
-quick glance at the <a href="http://daringfireball.net/projects/markdown/syntax#precode">markdown syntax doc</a> suggested I could use
-<code>&lt;div&gt;</code> to get around this.</p>
+via the CSS3 <code>tr:nth-child</code> selectors, see
+<a href="http://stackoverflow.com/a/2765557">StackOverflow</a>.  But the default Octopress <a href="https://github.com/rtomayko/rdiscount">markdown</a> drove me
+crazy by wrapping everything in <code>&lt;p&gt;&lt;/p&gt;</code> which killed my
+<code>&lt;style&gt;</code> attempts.  After a quick glance at the
+<a href="http://daringfireball.net/projects/markdown/syntax#precode">markdown syntax doc</a> suggested I could use <code>&lt;div&gt;</code> to
+get around this.</p>
 
-<h2>An example</h2>
+<h2 id="an-example">An example</h2>
 
 <p>It is useful to define the style locally since a global definition
 may not fit all circumstances.  In the style below, we define a the
-table class <code>ztab1</code> along with a few other style elements to dress up
-the table.</p>
+table class <code>ztab1</code> along with a few other style elements to
+dress up the table.</p>
 
-<figure class='code'><figcaption><span>zebra table in default markdown</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;</span><span class="nt">div</span><span class="o">&gt;</span>
-</span><span class='line'>  <span class="o">&lt;</span><span class="nt">style</span><span class="o">&gt;</span>
-</span><span class='line'>     <span class="nt">table</span><span class="nc">.ztab1</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">margin</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">font-size</span><span class="o">:</span> <span class="m">70</span><span class="o">%</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">steelblue</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">border-bottom</span><span class="o">:</span> <span class="m">2px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span><span class="o">,</span><span class="nt">td</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">padding</span><span class="o">:</span> <span class="m">4px</span> <span class="m">5px</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">odd</span><span class="o">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">lightsteelblue</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">background-color</span><span class="o">:</span> <span class="nb">cornflowerblue</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>  <span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>zebra table in default markdown </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="o">&lt;</span><span class="nt">div</span><span class="o">&gt;</span>
+</span><span class="line">  <span class="o">&lt;</span><span class="nt">style</span><span class="o">&gt;</span>
+</span><span class="line">     <span class="nt">table</span><span class="nc">.ztab1</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">margin</span><span class="o">:</span> <span class="k">auto</span><span class="p">;</span>
+</span><span class="line">        <span class="k">font-size</span><span class="o">:</span> <span class="m">70</span><span class="o">%</span><span class="p">;</span>
+</span><span class="line">        <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+</span><span class="line">        <span class="k">background-color</span><span class="o">:</span> <span class="nb">steelblue</span><span class="p">;</span>
+</span><span class="line">        <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+</span><span class="line">        <span class="k">border-bottom</span><span class="o">:</span> <span class="m">2px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">th</span><span class="o">,</span><span class="nt">td</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">padding</span><span class="o">:</span> <span class="m">4px</span> <span class="m">5px</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">odd</span><span class="o">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">background-color</span><span class="o">:</span> <span class="nb">lightsteelblue</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">      <span class="nt">table</span><span class="nc">.ztab1</span> <span class="nt">tr</span><span class="nd">:nth-of-type</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">background-color</span><span class="o">:</span> <span class="nb">cornflowerblue</span><span class="p">;</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">  <span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</span><span class="line"><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <div>
   <style>
@@ -212,11 +235,10 @@ the table.</p>
   </style>
 </div>
 
+<h2 id="the-result">The result</h2>
 
-<h2>The result</h2>
-
-<p>Using the <code>ztab1</code> table class defined above allows us to input raw HTML
-table to produce</p>
+<p>Using the <code>ztab1</code> table class defined above allows us to
+input raw HTML table to produce</p>
 
 <table class="ztab1">
   <tr>
@@ -245,22 +267,22 @@ table to produce</p>
     <td>parliament</td>
   </tr>
 </table>
-
-
-<p>&nbsp;</p>
+<p><br /></p>
 
 <p>The first column entries are centered by</p>
 
-<figure class='code'><figcaption><span>Center first column entry</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;</span><span class="nt">td</span> <span class="nt">style</span><span class="o">=</span><span class="s2">&quot;text-align: center;&quot;</span><span class="o">&gt;</span><span class="nt">1</span><span class="o">&lt;/</span><span class="nt">td</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Center first column entry </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="o">&lt;</span><span class="nt">td</span> <span class="nt">style</span><span class="o">=</span><span class="s2">&quot;text-align: center;&quot;</span><span class="o">&gt;</span><span class="nt">1</span><span class="o">&lt;/</span><span class="nt">td</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<h2 id="conclusion">Conclusion</h2>
 
-<h1>Conclusion</h1>
+<p>wsing a <code>&lt;div&gt;</code> tag wrapper prevents the default Octopress
+markdown from eating <code>&lt;style&gt;</code> definitions.  However a
+better solution would be to change the markdown parser, as suggested by
+<a href="http://oblita.com/blog/2012/07/06/octopress-with-mathjax-by-kramdown/">Chico</a> and <a href="http://www.whatwherewhy.me/blog/2012/01/15/changing-the-markdown-processor-in-octopress/">Aral Balkan</a>.</p>
 
-<p>Using a <code>&lt;div&gt;</code> tag wrapper prevents the default Octopress markdown from
-eating <code>&lt;style&gt;</code> definitions.  However a better solution would be to
-change the markdown parser, as suggested by <a href="http://oblita.com/blog/2012/07/06/octopress-with-mathjax-by-kramdown/">Chico</a> and <a href="http://www.whatwherewhy.me/blog/2012/01/15/changing-the-markdown-processor-in-octopress/">Aral Balkan</a>.</p>
 </div>
 
 
@@ -306,10 +328,10 @@ change the markdown parser, as suggested by <a href="http://oblita.com/blog/2012
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/09/09/ol-and-ul-alignment-in-octopress/" title="Previous Post: OL and UL alignment in Octopress">&laquo; OL and UL alignment in Octopress</a>
+        <a class="basic-alignment left articlenav" href="/blog/2012/09/09/ol-and-ul-alignment-in-octopress/" title="Previous Post: OL and UL alignment in Octopress">&laquo; OL and UL alignment in Octopress</a>
       
       
-        <a class="basic-alignment right" href="/blog/2012/09/15/uninstalling-mactex-2011/" title="Next Post: Uninstalling MacTeX 2011">Uninstalling MacTeX 2011 &raquo;</a>
+        <a class="basic-alignment right articlenav" href="/blog/2012/09/15/uninstalling-mactex-2011/" title="Next Post: Uninstalling MacTeX 2011">Uninstalling MacTeX 2011 &raquo;</a>
       
     </p>
   </footer>
