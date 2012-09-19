@@ -25,7 +25,7 @@ $ rake install['darkstripes']
 was the over-writing of all my custom `sass`, e.g., styles, etc.  This
 seems a little unnecessary, since it's already labeled *custom*.  Why not
 leave it, or move it out of the main theme, so it's not stomped on theme
-switch.  If your custom changes message the theme, that should be up to
+switch.  If your custom changes mess-up the theme, that should be up to
 you to fix.  Nuking things is never a good idea, unless we're talking
 microwave.
 
