@@ -126,7 +126,7 @@ The first column entries are centered by
 
 ## Conclusion
 
-wsing a `<div>`{:lang=html} tag wrapper prevents the default Octopress
+using a `<div>`{:lang=html} tag wrapper prevents the default Octopress
 markdown from eating `<style>`{:lang=html} definitions.  However a
 better solution would be to change the markdown parser, as suggested by
 [Chico][L5] and [Aral Balkan][L6].
