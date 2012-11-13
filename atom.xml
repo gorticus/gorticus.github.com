@@ -4,7 +4,7 @@
   <title><![CDATA[Gorticus' brain]]></title>
   <link href="http://gorticus.github.com/atom.xml" rel="self"/>
   <link href="http://gorticus.github.com/"/>
-  <updated>2012-09-18T23:37:36-04:00</updated>
+  <updated>2012-11-12T23:21:20-05:00</updated>
   <id>http://gorticus.github.com/</id>
   <author>
     <name><![CDATA[Jason Mitchell]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hurricane Sandy: Power outage history for MD and VA]]></title>
+    <link href="http://gorticus.github.com/blog/2012/11/12/hurricane-sandy-power-outage-history-for-md-and-va/"/>
+    <updated>2012-11-12T21:24:00-05:00</updated>
+    <id>http://gorticus.github.com/blog/2012/11/12/hurricane-sandy-power-outage-history-for-md-and-va</id>
+    <content type="html"><![CDATA[<p><a href="http://en.wikipedia.org/wiki/Hurricane_Sandy">Hurricane Sandy</a> hammered the mid-Atlantic region starting October
+29, 2012.  It was a terrible storm, and even now, approaching
+mid-November, areas hardest hit are still experiencing hardships.</p>
+
+<p>Having dealt with many past BG&amp;E power outages, most recently five
+days without power due to the <a href="http://en.wikipedia.org/wiki/June_2012_North_American_derecho">June 2012 Derecho</a>, I regularly
+capture their <a href="http://www.bge.com/customerservice/stormsoutages/currentoutages/pages/default.aspx">outage (bit) map</a> for my own records.  The derecho
+also motivated me to capture Dominion Electric VA’s <a href="https://www.dom.com/storm-center/dominion-electric-outage-map.jsp">outage map</a>
+regularly for comparison.  Here are examples for BG&amp;E and Dominion
+VA for October 29, 2012 as Sandy made landfall:</p>
+
+<div align="center">
+<img src="https://raw.github.com/gorticus/sandy_power_timelapse_md_va/master/bge/bge-20121029.gif" width="275" />
+<img src="https://raw.github.com/gorticus/sandy_power_timelapse_md_va/master/dom_va/dom_va-20121029.gif" width="275" />
+<br />
+<em>(<strong>right-click</strong> and <strong>view image</strong> for
+full image; &nbsp; more loops <a href="https://github.com/gorticus/sandy_power_timelapse_md_va">here</a>)</em>
+<br />
+<br />
+</div>
+
+<p>Loops are available <a href="https://github.com/gorticus/sandy_power_timelapse_md_va">here</a> for October 29 through November 3, 2012.
+The <code>README.md</code> contains some description and direct links to the raw
+gifs.</p>
+
+<p>Luckily, my area maintained power all through Sandy’s attack.  Time for
+a <a href="http://en.wikipedia.org/wiki/Transfer_switch">transfer switch</a>, a portable power generator, and a fuel
+stock for the next unplanned outage.</p>
+
+<p>Best wishes to those in NY and NJ for relief and restoration of
+services.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Site updates]]></title>
@@ -431,7 +471,7 @@ input raw HTML table to produce</p>
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>wsing a <code>&lt;div&gt;</code> tag wrapper prevents the default Octopress
+<p>using a <code>&lt;div&gt;</code> tag wrapper prevents the default Octopress
 markdown from eating <code>&lt;style&gt;</code> definitions.  However a
 better solution would be to change the markdown parser, as suggested by
 <a href="http://oblita.com/blog/2012/07/06/octopress-with-mathjax-by-kramdown/">Chico</a> and <a href="http://www.whatwherewhy.me/blog/2012/01/15/changing-the-markdown-processor-in-octopress/">Aral Balkan</a>.</p>
